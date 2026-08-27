@@ -151,7 +151,7 @@ meant to be copied as-is:
   `.env` the same way.
 
 Both include `UPDATE_DRONE`, required for the `new-gui` viewer (see Step 6
-for how to launch it, if this repository bundles one). `.env.example`
+for how to launch it). `.env.example`
 is a third, separate file -- an annotated reference for hand-building your
 own `.env` from scratch -- not something to copy directly.
 
@@ -310,9 +310,9 @@ You should see:
 Initially the vehicle will remain stationary because no commands have yet
 been sent.
 
-> **Multi-vehicle GUI:** if this repository also bundles `gui/` (the
+> **Multi-vehicle GUI:** this repository also includes `gui/` (the
 > DroneResponse multi-vehicle viewer -- map view, per-drone panels,
-> simulated camera feeds), see the top-level `README.md` for how to install
+> simulated camera feeds). See the top-level `README.md` for how to install
 > and launch it instead of, or alongside, `matplotlib_view.py`.
 
 ---
