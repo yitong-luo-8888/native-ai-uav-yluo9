@@ -1,0 +1,26 @@
+{
+  "name": "PlaneCrash-PeppermintRd",
+  "objects": [
+    {
+      "image": "events/plane.png",
+      "lat": 41.6039797426207,
+      "lon": -86.35481447442868,
+      "width_m": 50.0,
+      "z_order": 0
+    },
+    {
+      "image": "people/injured-man.png",
+      "lat": 41.604035900154564,
+      "lon": -86.3551256106744,
+      "width_m": 20.0,
+      "z_order": 1
+    },
+    {
+      "image": "people/injured-lady.png",
+      "lat": 41.604043922655414,
+      "lon": -86.35455698236325,
+      "width_m": 20.0,
+      "z_order": 2
+    }
+  ]
+}

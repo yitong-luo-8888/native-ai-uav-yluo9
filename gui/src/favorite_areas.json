@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Notre Dame",
+    "tag": "nd",
+    "lat": 41.698575,
+    "lon": -86.237055,
+    "altitude": 224.0,
+    "default": true
+  }
+]
