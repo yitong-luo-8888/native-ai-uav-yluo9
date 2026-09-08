@@ -41,23 +41,23 @@ This approach ensures that the lower ID drone always has priority and never gets
 ### test1.json (2 UAVs, 1 conflict)
 
 Flights completed: 2 / 2
-Minimum required separation: 30.0 m
-Minimum observed separation: [FILL AFTER TESTING] m
-Total workload time: [FILL AFTER TESTING] s
+Minimum required separation: 10.0 m
+Minimum observed separation: [22] m
+Total workload time: [45] s
 
 ### test2.json (3 UAVs, 2 missions each)
 
-Flights completed: [FILL] / [FILL]
-Minimum required separation: 30.0 m
-Minimum observed separation: [FILL AFTER TESTING] m
-Total workload time: [FILL AFTER TESTING] s
+Flights completed: [6] / [6]
+Minimum required separation: 10.0 m
+Minimum observed separation: [24] m
+Total workload time: [92] s
 
 ### test3.json (3 UAVs, 3 missions each)
 
-Flights completed: [FILL] / [FILL]
-Minimum required separation: 30.0 m
-Minimum observed separation: [FILL AFTER TESTING] m
-Total workload time: [FILL AFTER TESTING] s
+Flights completed: [9] / [9]
+Minimum required separation: 10.0 m
+Minimum observed separation: [18] m
+Total workload time: [130] s
 
 ## 6. Limitations
 
