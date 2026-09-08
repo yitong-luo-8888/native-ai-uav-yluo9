@@ -12,7 +12,6 @@ This is primarily a **one-time setup**. Once your environment is working,
 future labs will focus on building intelligent UAV applications rather than
 configuring software.
 
-***NOTE: Still testing for Mac OS.  Will be tested on Monday 24th.  If anyone tests before then please email JaneHuang@nd.edu.
 ---
 
 # Learning Objectives
@@ -60,7 +59,9 @@ You will need:
 - Hardware virtualization (Intel VT-x / AMD-V) enabled in your BIOS/UEFI --
   on by default on most machines, but see the Troubleshooting section below
   if Docker complains about it
-- Approximately 5 GB of available disk space
+- Approximately 8 GB of available disk space (the SITL image alone is
+  ~3.7 GB; this leaves headroom for the backend image, the broker, and
+  your Python virtual environment)
 
 ---
 
@@ -85,12 +86,34 @@ run the development environment.
 - **Mac (Intel or Apple Silicon):** Install Docker Desktop.
   - **Apple Silicon only:** the SITL image is `linux/amd64` (ArduPilot's own
     dev-toolchain base image doesn't publish an arm64 build). Docker Desktop
-    runs it under Rosetta-accelerated emulation, which is fast enough for
-    this course, but you must enable it once: **Docker Desktop → Settings →
-    General → "Use Rosetta for x86_64/amd64 emulation on Apple Silicon."**
-    Also raise Docker Desktop's CPU/memory limits from the defaults
-    (Settings → Resources) -- the out-of-the-box limits are commonly too low
-    for SITL.
+    can run it under Rosetta-accelerated emulation, which is fast enough for
+    this course, but it's **off by default** and needs two settings, both
+    under **Docker Desktop → Settings → General**:
+    1. **Virtual Machine Manager** set to **Apple Virtualization framework**
+       -- the Rosetta checkbox below only appears/works under this VMM. If
+       you don't see it, check this first.
+    2. **"Use Rosetta for x86_64/amd64 emulation on Apple Silicon"** --
+       check this box.
+
+    Click **Apply & Restart** after changing either.
+- **Mac only:** check **Settings → Resources** before Step 4. Two separate
+  limits live there, and both matter:
+  - **CPU/memory** -- the out-of-the-box limits are commonly too low for
+    SITL; raise them from the defaults.
+  - **Disk usage limit** (Resources → Advanced) -- this caps how much disk
+    *Docker's own VM* is allowed to use, separate from your Mac's free disk
+    space above. If it's set below ~8 GB, `docker compose pull` in Step 4
+    can fail partway through even though your Mac itself has plenty of
+    room.
+- **Windows (WSL2 backend) only:** these same Resources sliders in Docker
+  Desktop don't apply -- WSL2 manages its own resources, and its defaults
+  (50% of your RAM, all CPU cores, up to 1 TB of disk) are already well
+  above what this course needs, so you shouldn't need to touch anything.
+  If you ever do need to change them, it's `%UserProfile%\.wslconfig`
+  (`[wsl2]` section, `memory=`/`processors=` keys), not Docker Desktop's
+  UI -- then `wsl --shutdown` from PowerShell to apply it.
+- **Linux (no Docker Desktop):** no separate VM layer, so none of the
+  above applies -- only your host's actual free disk/CPU/memory.
 
 ---
 
@@ -113,7 +136,15 @@ This `lab/` directory lives in two places, and this guide works from either:
   git clone git@github.com:nd-native-ai-uav/native-ai-uav-<netid>.git
   cd native-ai-uav-<netid>
   ```
-  These will be setup after class, once each student provides their github handle.
+
+- **Team-project work:** clone the shared course infrastructure repository,
+  which is updated throughout the semester:
+
+  ```bash
+  git clone https://github.com/JaneClelandHuang/uav-native-ai.git
+  cd uav-native-ai
+  ```
+
 ---
 
 # Step 3 – Create the Python Environment
@@ -150,8 +181,7 @@ meant to be copied as-is:
   you're past this lab and want a multi-vehicle fleet, by copying it over
   `.env` the same way.
 
-Both include `UPDATE_DRONE`, required for the `new-gui` viewer (see Step 6
-for how to launch it). `.env.example`
+Both include `UPDATE_DRONE`, required for the `new-gui` viewer. `.env.example`
 is a third, separate file -- an annotated reference for hand-building your
 own `.env` from scratch -- not something to copy directly.
 
@@ -186,7 +216,7 @@ how many vehicles run or where they start -- that's computed by a script
 from settings in `.env`:
 
 ```bash
-python3 scripts/generate_fleet.py
+python scripts/generate_fleet.py
 ```
 
 The defaults (`CENTER_LOCATION=ND`, `NUM_DRONES=1`) start a single vehicle
@@ -199,7 +229,7 @@ you change either value -- it only rewrites `docker-compose.override.yml`,
 it does not itself start or stop anything.
 
 For a one-off run without editing `.env`, pass flags instead:
-`python3 scripts/generate_fleet.py --location CMAC --num-drones 3`
+`python scripts/generate_fleet.py --location CMAC --num-drones 3`
 (`--help` lists all of them). Flags only affect that run -- `.env` is left
 untouched either way.
 
@@ -310,11 +340,6 @@ You should see:
 Initially the vehicle will remain stationary because no commands have yet
 been sent.
 
-> **Multi-vehicle GUI:** this repository also includes `gui/` (the
-> DroneResponse multi-vehicle viewer -- map view, per-drone panels,
-> simulated camera feeds). See the top-level `README.md` for how to install
-> and launch it instead of, or alongside, `matplotlib_view.py`.
-
 ---
 
 # Step 7 – Fly Your First Mission
@@ -392,7 +417,9 @@ PowerShell and Command Prompt are not supported for this course.
 ## Apple Silicon
 
 Enable Rosetta emulation in Docker Desktop and increase Docker's CPU and
-memory allocation if SITL performs poorly.
+memory allocation if SITL performs poorly. If the Rosetta checkbox is
+missing entirely, see Step 1 -- it only appears once the Virtual Machine
+Manager is set to Apple Virtualization framework.
 
 ---
 
@@ -401,6 +428,20 @@ memory allocation if SITL performs poorly.
 `docker compose pull` will fail (or hang) trying to reach `eclipse-mosquitto`
 or the SITL image on GHCR. Try a different network, or ask IT to allowlist
 Docker Hub / GHCR.
+
+---
+
+## `docker compose pull` fails partway through with a disk-space error
+
+Two different things can cause this -- check both:
+
+1. **Your host machine's own free disk space.** See "Before You Begin" for
+   the ~8 GB you need.
+2. **Docker Desktop's own disk usage limit** (Mac only: Settings →
+   Resources → Advanced). This caps *Docker's VM*, separately from your
+   Mac's free space -- raise it if it's set low, even if your machine
+   itself has plenty of room. This setting doesn't apply on Windows with
+   the WSL2 backend (see Step 1) or on Linux.
 
 ---
 
