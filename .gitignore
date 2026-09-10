@@ -14,6 +14,7 @@ docker-compose.override.yml
 lab/cv/data/*
 !lab/cv/data/.gitkeep
 
+<<<<<<< HEAD
 # Jekyll build output
 _site/
 .jekyll-cache/
@@ -23,5 +24,7 @@ _site/
 # instructor/scripts/sync-lab-infra.sh)
 instructor/roster*
 
+=======
+>>>>>>> target/main
 # OS cruft
 .DS_Store

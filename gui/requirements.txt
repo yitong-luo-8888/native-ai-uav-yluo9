@@ -1,0 +1,4 @@
+PyQt5
+paho-mqtt
+matplotlib
+requests

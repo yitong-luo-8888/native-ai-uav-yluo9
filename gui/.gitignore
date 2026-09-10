@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.bin
+*.json
+*.csv
+venv/
+.venv/
+.claude/
