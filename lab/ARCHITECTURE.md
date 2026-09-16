@@ -303,8 +303,11 @@ containerized). Subscribes to `uav/<id>/home` (retained) and
 | Topic | Direction | Retained? | Purpose |
 |---|---|---|---|
 | `uav/<id>/telemetry` | backend → clients | no | Full vehicle state, published at `TELEMETRY_HZ` |
-| `uav/<id>/command` | clients → backend | no | Arm/disarm/takeoff/goto/circle/fly_home/interrupt/land requests |
+| `uav/<id>/command` | clients → backend | no | Arm/disarm/takeoff/goto/circle/fly_home/interrupt/land/inject_fault requests |
 | `uav/<id>/home` | backend → clients | **yes** | Shared local-frame origin, published once |
+| `uav/<id>/monitor_config` | clients → backend | **yes** | Which runtime-monitoring categories to include on `monitored_data` |
+| `uav/<id>/monitored_data` | backend → clients | no | Only the currently-configured categories, published at `TELEMETRY_HZ` |
+| `uav/<id>/status_text` | backend → clients | no | Every `STATUSTEXT` the vehicle sends, relayed the instant it arrives |
 
 ```json
 // uav/1/telemetry
@@ -367,7 +370,16 @@ misleading `-1` or `0`.
 {"type": "fly_home"}
 {"type": "interrupt"}
 {"type": "land"}
+{"type": "inject_fault", "params": {"SIM_VIB_MOT_MAX": 95.2, "SIM_VIB_MOT_MULT": 5.1}}
 ```
+
+`inject_fault` (lesson 4, `scripts/mischief_maker.py`) sets one or more
+ArduPilot `SIM_*` simulation parameters via the same generic
+`mavlink_lib.set_param()` any tuning parameter uses — SITL treats fault
+injection as ordinary parameters, not a special mechanism. The one thing
+`handle_command` guards here: any param name not starting with `SIM_` is
+logged and dropped, never sent — this command type must never be usable to
+touch a real tuning parameter.
 
 ```json
 // uav/1/home (retained)
@@ -377,6 +389,80 @@ misleading `-1` or `0`.
 Malformed JSON or unknown command types are logged and ignored — the backend
 never crashes on bad input. This is "trust but verify" applied to its own
 system boundary, the same principle that applies to AI-generated code.
+
+### Runtime monitoring (`monitor_config` / `monitored_data` / `status_text`)
+
+See also `scripts/mischief_maker.py`, which produces the faults these
+categories exist to detect — a randomized-severity `inject_fault` command
+(documented above, in "The MQTT contract") fired at a randomized moment
+after a real takeoff, so neither the exact trigger time nor the exact
+magnitude is predictable ahead of time.
+
+Added for lesson 4, alongside — not instead of — the core telemetry above:
+existing `mavlink_reader` handling for `HEARTBEAT`/`GLOBAL_POSITION_INT`/
+`VFR_HUD`/`SYS_STATUS`→battery is untouched, so nothing here can break
+`matplotlib_view.py` or any other existing consumer.
+
+**The dispatch table lives in `backend/monitor_signals.py`, not inline in
+`drone_backend.py`.** `mavlink_reader` calls it once per message,
+unconditionally — not as another `elif` branch in the existing chain,
+because some message types (`SYS_STATUS`) need to hit both the old inline
+handling *and* this. `CATEGORY_HANDLERS` maps a MAVLink message type to a
+category name and a `mavlink_lib.parse_*` function; the result lands in one
+new `VehicleState` slot (`self.monitor`, a dict keyed by category, latest
+value per category) rather than a new named attribute per signal — adding a
+category is a one-line addition to that table, nothing else changes:
+
+```json
+// uav/1/monitored_data
+{
+  "vehicle_id": "1", "timestamp": 1737000000.123,
+  "vibration": {"vibration_x": 0.02, "vibration_y": 0.03, "vibration_z": 0.02,
+                "clipping": [0, 0, 0]},
+  "gps": {"fix_type": 6, "satellites_visible": 10,
+          "h_acc_m": 0.3, "v_acc_m": 0.3, "hdop_h": 1.21, "hdop_v": 2.0}
+}
+```
+
+Categories: `vibration` (`VIBRATION`), `gps` (`GPS_RAW_INT`), `ekf`
+(`EKF_STATUS_REPORT`), `compass` (`RAW_IMU`'s magnetometer fields, plus a
+derived `field_magnitude`), `battery` (`SYS_STATUS`, independently of the
+`battery_voltage`/`battery_level` already on `telemetry`). Confirmed live
+against a running SITL instance, not assumed from the MAVLink spec alone —
+worth calling out since one candidate field, dataflash's `BAT.Res` (battery
+internal resistance), turned out not to exist anywhere in the MAVLink
+dialect at all when checked this way, and was dropped rather than faked.
+
+**Only the categories a client has asked for are published — nothing by
+default.** `monitor_config` is retained, mirroring `home`'s pattern: a
+client sets it once, and it takes effect immediately (a fresh subscriber
+sees it right away) and stays in effect (a backend restart, or a late
+subscriber, sees the same configuration without anyone re-sending it).
+Every message on this topic fully replaces the requested set, not merges
+into it:
+
+```json
+// uav/1/monitor_config (retained)
+{"categories": ["vibration", "gps"]}
+```
+
+Unknown category names are logged and dropped, same "never crash on bad
+input" policy as `command`. Before any `monitor_config` message has ever
+arrived, `monitored_data` still publishes every tick — just with an empty
+body (`{"vehicle_id": ..., "timestamp": ...}`, no categories) — rather than
+not publishing at all, so a subscriber can tell "not configured yet" apart
+from "the broker isn't there."
+
+**`STATUSTEXT` is handled differently in kind, not degree, and doesn't go
+through any of the above.** It's an event stream (ArduPilot emits one
+whenever something's worth saying — `PreArm: ...`, `EKF Failsafe` — not a
+value that's meaningfully "current"), so folding it into `monitor` the same
+way as everything else would silently drop all but the last message
+received between two `TELEMETRY_HZ` ticks. Instead it's relayed the moment
+it arrives — same "publish immediately, don't wait for the tick" pattern
+`HOME_POSITION` already uses — on its own topic, with nothing kept in
+`VehicleState` and no retain: a client that wants a history keeps it
+themselves; the backend's job stops at "here's the message, right now."
 
 ## Coordinate frame policy
 
@@ -542,6 +628,11 @@ private homework repo (which vendors this same `lab/` directory):
     client/
       matplotlib_view.py
       requirements.txt
+    client2/                 <- instructor-synced clients; see "Two client
+                                 directories" below for why this isn't just
+                                 more files in client/
+      monitor_view.py
+      requirements.txt
     cv/
       requirements.txt         <- ultralytics (YOLO26n) + paho-mqtt; separate from
                                    client/backend so it's never installed until the
@@ -563,6 +654,32 @@ private homework repo (which vendors this same `lab/` directory):
   instructor/                    <- NOT under lab/, so NOT vendored into
                                      student repos; see instructor/INSTRUCTOR.md
 ```
+
+### Two client directories
+
+`lab/client/` and `lab/client2/` look symmetric but mean opposite things to
+`instructor/scripts/sync-lab-infra.sh`: **`client/` is deliberately excluded
+from the mirror it pushes to every student repo; `client2/` is not.**
+
+This split exists because of a real incident, not a hypothetical: an early
+version of that script mirrored `lab/` wholesale, including `client/`, and
+it silently overwrote an instructor's own multi-drone rewrite of
+`matplotlib_view.py` with the plain single-vehicle template version — no
+warning, no conflict, just gone. `client/` is a GUI students (and the
+instructor's own working copy) are expected to rewrite, per
+`matplotlib_view.py`'s own docstring ("meant to be swappable... with zero
+backend changes") — exactly the kind of file a blanket infra sync should
+never touch.
+
+`client2/` is where an instructor-authored client that *should* reach every
+student repo goes instead — `monitor_view.py` (lesson 4's minimal runtime-
+monitoring console client) is the first thing living here. The trade-off is
+explicit, not accidental: anything genuinely new placed in `client2/` will
+overwrite a same-named file a student has edited there, same as any other
+infra file under `lab/`. Don't add a file to `client2/` that you expect
+students to meaningfully customize — that belongs in `client/`, or a new,
+separate directory with its own name and its own decision about whether it
+syncs.
 
 ## DroneResponse `UPDATE_DRONE` integration
 
