@@ -1,0 +1,217 @@
+# WORKED-EXAMPLE.md — Validating the Skill Before Trusting It
+
+## Why this document exists
+
+The assignment requires that the testing skill be validated on a target
+whose behavior is already well understood, *before* it is pointed at the
+HW02 ATC. If the skill cannot produce sensible unit tests for a known
+pure function and sensible integration tests for a known live-fleet
+script, it must be fixed before it is used on anything more complex.
+
+This document records two such validation runs:
+
+1. `lab/scripts/test_flight.py` — a worked example of driving one UAV
+   through one mission over the MQTT contract.
+2. `lab/lesson4/battery/battery_detector.py` — a small, well-understood
+   pure-logic module.
+
+For each, we record what the skill classified, what it generated, what
+the tests did when run, and whether the output matched the predictions
+written into `SKILL.md`.
+
+---
+
+## Target 1 — `lab/scripts/test_flight.py`
+
+### What this file is
+
+`test_flight.py` is the Lesson 1 reference script for flying a single
+UAV through a mission. It is deliberately single-UAV and blocking. It
+connects to MQTT, publishes arm/takeoff/goto commands, waits on
+telemetry for state transitions, and asserts a 2 m arrival tolerance.
+It is a known quantity: we know which parts are pure, which are
+stub-testable, and which need a live broker.
+
+### Classification produced by the skill
+
+| Function | Kind | Reason |
+|---|---|---|
+| `wait_for(...)` | STUB | Waiting loop; driven by a fake clock. |
+| `execute_command(...)` | STUB | Publishes via MQTT but through a small wrapper; a recording client suffices. |
+| arrival check / distance math | PURE | Arithmetic on positions, no I/O. |
+| `on_connect(...)` | LIVE | Real MQTT callback. |
+| `main()` | LIVE | Top-level entry point; opens a broker connection and runs the full loop. |
+
+This matches the predictions written into `SKILL.md`'s
+"Worked example expectations" section: wait helpers as STUB, publish
+calls as STUB, `main()` as LIVE.
+
+### Generated files
+
+- `generated-tests/unit/conftest.py` — fake clock, recording MQTT
+  client, path insertion so `test_flight` imports from `lab/scripts`.
+- `generated-tests/unit/test_test_flight.py` — 24 unit tests.
+- `generated-tests/integration/test_test_flight_live.py` — integration
+  tests for `on_connect` and `main()`, marked `@pytest.mark.integration`,
+  auto-skipping when no broker is reachable.
+- `generated-tests/pytest.ini` — registers the `integration` marker to
+  silence the unknown-marker warning.
+
+### What the unit tests cover
+
+The generated suite tests, among other things:
+
+- **Timeout → SystemExit(1)** behavior in `wait_for` and
+  `execute_command`, exercised with a fake clock so no real time is
+  spent.
+- **Resend cadence** for `wait_for`/`execute_command`.
+- **The 2 m arrival-tolerance boundary** — exactly at 2 m, just inside,
+  just outside.
+- **A composed ordering test** reproducing `main()`'s
+  takeoff → goto sequence *without* invoking the LIVE `main()`
+  itself, by composing the STUB-testable functions underneath it.
+
+That last item is the important one: the skill correctly distinguished
+"`main()` cannot be called in a unit test" from "`main()`'s ordering
+logic can be unit-tested by driving its dependencies."
+
+### Unit test run
+
+No real waiting occurred despite exercising timeout and resend logic,
+because the fake clock replaced `time.sleep`. That is the proof that
+the STUB tests were written correctly.
+
+### Integration tests
+
+Collected but skipped — no live broker was running at the time:
+
+Skipping rather than hanging is the correct behavior. The integration
+tests also assert only on live telemetry (never on printed output) and
+land and disconnect in a `finally` block even on failure, per
+`SKILL.md` Step 4.
+
+### Did it match the predictions?
+
+Yes. Classification, file layout, and test content all match the
+"Worked example expectations" section of `SKILL.md`.
+
+### What went wrong on the first run
+
+The first invocation hung for approximately 13 minutes on the final
+"combined suite + cache cleanup" step. The cause: the agent tried to
+run pytest over the whole `generated-tests/` tree, which collected the
+integration tests, which attempted to connect to MQTT at
+`localhost:1883`, which blocked.
+
+Interrupted with Esc. Files already written were intact. Fixes applied:
+
+1. Added an explicit broker-reachability check to every integration
+   test, so a missing broker causes `pytest.skip(...)` rather than a
+   hang.
+2. Tightened `SKILL.md` Step 5 to scope the pytest invocation to
+   `generated-tests/unit/` only, and to explicitly forbid running the
+   integration directory as part of generation.
+3. Noted in `SKILL.md` Step 0 that `pytest` and `pytest-timeout` must
+   be importable, installing them if not.
+
+After these changes, the run completed cleanly.
+
+---
+
+## Target 2 — `lab/lesson4/battery/battery_detector.py`
+
+### What this file is
+
+`battery_detector.py` is a small pure-logic module from Lesson 4 that
+reads battery telemetry samples and produces a verdict about whether
+the battery is healthy. Its threshold logic (an 11.0 V threshold, plus
+a windowed-averaging rule) and its `on_message` handler are the
+interesting parts. There is no live-fleet behavior in the module
+itself — everything is either pure arithmetic or state accumulated
+from messages.
+
+### Classification produced by the skill
+
+| Function | Kind | Reason |
+|---|---|---|
+| `evaluate(...)` / threshold logic | PURE | Arithmetic on accumulated readings; no I/O. |
+| `on_message(...)` | STUB | Reads and mutates module state; can be driven with fabricated messages. |
+
+This matches the prediction in `SKILL.md`: threshold logic should be
+classified PURE.
+
+### Generated files
+
+- `generated-tests/unit/test_battery_detector.py` — 15 unit tests.
+- `generated-tests/integration/test_battery_detector_live.py` — written
+  but not executed, per the constraint that this run must not connect
+  to MQTT.
+
+### What the unit tests cover
+
+The generated suite tests, among other things:
+
+- **"Not enough data" cases** — empty window, too few samples, window
+  span too short, no voltage readings.
+- **Threshold boundary** — below 11.0 V, above 11.0 V, and exactly at
+  11.0 V. The boundary test is the one the `SKILL.md` prediction
+  specifically called for.
+- **Negative test** — a single noisy low sample amid otherwise normal
+  readings does not flip the windowed verdict.
+- **Partial telemetry** — averaging only over the readings that are
+  present.
+- **`on_message` behavior** — appends a reading to the window, ignores
+  malformed JSON without mutating state, ignores payloads missing the
+  battery key, trims samples older than `WINDOW_S`, propagates the
+  verdict, and defaults a missing timestamp to "now".
+
+### Unit test run
+
+15 tests for `battery_detector`. No MQTT connections made.
+
+### Integration tests
+
+`generated-tests/integration/test_battery_detector_live.py` was written
+per `SKILL.md` Step 4/Step 6, but not executed — this run was
+constrained not to open an MQTT connection. The unit suite for this
+target required no broker and ran cleanly.
+
+### Did it match the predictions?
+
+Yes. The threshold logic was classified PURE and tested at the exact
+boundary (exactly-at-11.0 V), exactly as `SKILL.md` predicted. The
+skill additionally generated "not enough data" edge cases and a
+negative test for the windowed verdict that were not part of the
+original plan — a good sign that the procedure's "include at least one
+negative test and one edge case" rule was being followed.
+
+---
+
+## Conclusion
+
+The skill was validated against two known targets before being applied
+to the HW02 ATC:
+
+1. `test_flight.py` — a STUB-heavy, MQTT-driven script. The skill
+   correctly separated PURE, STUB, and LIVE parts, generated runnable
+   tests for each, and produced an integration test that skips cleanly
+   when no broker is present.
+2. `battery_detector.py` — a PURE-logic module with a STUB-testable
+   `on_message`. The skill classified the threshold logic as PURE,
+   tested it at the exact threshold boundary, and found several "not
+   enough data" edge cases and a negative windowed-verdict case that
+   were not part of the original plan.
+
+The skill's output matched the design intent documented in `SKILL.md`.
+Three procedural fixes were required during validation:
+
+1. Broker-reachability check in integration tests, so a missing broker
+   causes `pytest.skip` rather than a hang.
+2. Step 5 scoped to `generated-tests/unit/` only, forbidding the
+   integration directory from being run as part of generation.
+3. Step 0 verifies `pytest` and `pytest-timeout` are importable,
+   installing them if not.
+
+With the skill validated on both targets, it is safe to point it at
+`hw05/atc.py` and `hw05/start_tests.py`. The results of that run are
+recorded in `report.md`.
