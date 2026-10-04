@@ -31,6 +31,7 @@ class CameraFramePublisher:
             "timestamp": time.time(),
             "format": "jpeg",
             "image_b64": pixmap_to_jpeg_b64(pixmap, self._cfg.jpeg_quality),
+            "pose": self._camera_manager.get_pose(name),
         }
         topic = self._cfg.camera_topic_template.format(name=name)
         self._drone_store.publish(topic, json.dumps(envelope))

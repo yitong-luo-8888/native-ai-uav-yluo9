@@ -37,6 +37,10 @@ class _CamState:
         # True once the last capture's ideal zoom got clamped to the tile
         # provider's known-available ceiling — zooming in further wouldn't help.
         self.at_ceiling: bool = False
+        # Where the camera was when `frame` was captured (lat, lon, AGL,
+        # FOV, zoom) -- published with the frame so a detector can
+        # geolocate what it sees (lab/cv/geolocate.py).
+        self.pose: Optional[dict] = None
 
 
 class CameraManager(QObject):
@@ -130,6 +134,10 @@ class CameraManager(QObject):
         state = self._states.get(name)
         return state.frame if state else None
 
+    def get_pose(self, name: str) -> Optional[dict]:
+        state = self._states.get(name)
+        return state.pose if state else None
+
     def _on_tick(self) -> None:
         now = time.monotonic()
         for name, state in self._states.items():
@@ -156,4 +164,9 @@ class CameraManager(QObject):
             self._cfg.fov_h_deg, self._cfg.fov_v_deg,
             state.zoom, self._cfg.image_px,
         )
+        state.pose = {
+            "lat": drone.lat, "lon": drone.lon, "agl_m": agl_m,
+            "fov_h_deg": self._cfg.fov_h_deg, "fov_v_deg": self._cfg.fov_v_deg,
+            "zoom": state.zoom, "north_up": True,
+        }
         self.frame_updated.emit(drone.name)
