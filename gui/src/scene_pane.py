@@ -34,6 +34,7 @@ _THUMB_COLS = 3    # thumbnails per row
 _DEFAULT_WIDTH_M = {
     "events":  20.0,   # ~car/incident footprint
     "people":  8.0,   # ~adult shoulder width
+    "clues":   8.0,   # clue icons are drawn at the people icons' scale
 }
 
 _TEXT = "#e8e8e8"
@@ -346,7 +347,7 @@ class ScenePane(QWidget):
         palette_layout.setContentsMargins(0, 0, 0, 0)
         palette_layout.setSpacing(6)
 
-        for category in ("events", "people"):
+        for category in ("events", "people", "clues", "clues/decoys"):
             cat_dir = _SCENE_DIR / category
             if not cat_dir.exists():
                 continue
