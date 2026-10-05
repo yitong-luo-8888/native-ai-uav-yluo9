@@ -28,3 +28,6 @@ instructor/roster*
 >>>>>>> target/main
 # OS cruft
 .DS_Store
+
+# HW7 run logs and trace images (lab/lesson7/evaluate.py, detector.py)
+hw07/clues/data/
