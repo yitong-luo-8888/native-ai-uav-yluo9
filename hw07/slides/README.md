@@ -1,7 +1,7 @@
 # HW7 presentation slides
 
 Thursday, Oct. 15: **4 minutes of presentation, then 2 minutes of Q&A**,
-where one of the 20 questions in `../questions.md` is drawn from a hat for
+where one of the 15 questions in `../questions.md` is drawn from a hat for
 you to answer live.
 
 Put your slides here before class:
