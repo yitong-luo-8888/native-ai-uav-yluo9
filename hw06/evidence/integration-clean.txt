@@ -1,0 +1,53 @@
+# started 2026-10-07 21:39:20 EDT
+21:39:23 {'battery_level': 1.0, 'battery_voltage': 12.6, 'armed': False, 'mode': 'STABILIZE', 'activity': 'idle', 'alt_rel': -0.002}
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0 -- /home/yitong/uav-native-ai/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/yitong/uav-native-ai/hw06
+configfile: pytest.ini
+collecting ... collected 4 items
+
+tests/integration/test_cancel_resume.py::test_cancel_mid_response_resumes_route 
+-------------------------------- live log setup --------------------------------
+21:39:24 planner.executor: UAV 1 taking off to 20 m
+-------------------------------- live log call ---------------------------------
+21:39:37 planner: Event 73faf8db -> P1 (conf 0.90): asking for a decision
+21:39:38 planner: Approved hover_stream on UAV 1 for P1 as cf8e85dc
+PASSED
+tests/integration/test_deliver_then_reject.py::test_deliver_then_second_deliver_rejected 
+-------------------------------- live log call ---------------------------------
+21:39:39 planner: Event a2a80818 -> P1 (conf 0.90): asking for a decision
+21:39:39 planner: Approved deliver on UAV 1 for P1 as ee1a9193
+21:40:03 planner.executor: UAV 1 released medical_kit (removed=True)
+21:40:12 planner: Event cab2d23d -> P2 (conf 0.90): asking for a decision
+21:40:12 planner: Rejected deliver for P2: UAV 1 is not carrying medical_kit (payload on board: none).
+PASSED
+tests/integration/test_hover_resume.py::test_hover_stream_completes_and_resumes 
+-------------------------------- live log call ---------------------------------
+21:40:13 planner: Event c0415b63 -> P1 (conf 0.90): asking for a decision
+21:40:14 planner: Approved hover_stream on UAV 1 for P1 as 0bc64c42
+PASSED
+tests/integration/test_no_repopup.py::test_same_person_reannounced_no_popup 
+-------------------------------- live log call ---------------------------------
+21:40:35 planner: Event d5072412 -> P1 (conf 0.90): asking for a decision
+21:40:36 planner: Event 27b531f3 merged into P1 (DISMISSED): no new decision
+21:40:36 planner: Event d4a345d0 merged into P1 (DISMISSED): no new decision
+21:40:36 planner: Event 8c41e15c merged into P1 (DISMISSED): no new decision
+PASSED
+
+============================== slowest durations ===============================
+33.46s call     tests/integration/test_deliver_then_reject.py::test_deliver_then_second_deliver_rejected
+20.74s call     tests/integration/test_hover_resume.py::test_hover_stream_completes_and_resumes
+13.50s call     tests/integration/test_cancel_resume.py::test_cancel_mid_response_resumes_route
+0.67s setup    tests/integration/test_hover_resume.py::test_hover_stream_completes_and_resumes
+0.66s setup    tests/integration/test_deliver_then_reject.py::test_deliver_then_second_deliver_rejected
+0.62s teardown tests/integration/test_no_repopup.py::test_same_person_reannounced_no_popup
+0.61s call     tests/integration/test_no_repopup.py::test_same_person_reannounced_no_popup
+0.59s setup    tests/integration/test_cancel_resume.py::test_cancel_mid_response_resumes_route
+0.57s setup    tests/integration/test_no_repopup.py::test_same_person_reannounced_no_popup
+0.42s teardown tests/integration/test_hover_resume.py::test_hover_stream_completes_and_resumes
+0.39s teardown tests/integration/test_deliver_then_reject.py::test_deliver_then_second_deliver_rejected
+0.31s teardown tests/integration/test_cancel_resume.py::test_cancel_mid_response_resumes_route
+========================= 4 passed in 72.64s (0:01:12) =========================
+# finished 2026-10-07 21:40:38 EDT
+21:40:41 {'battery_level': 0.82, 'battery_voltage': 12.6, 'armed': True, 'mode': 'GUIDED', 'activity': 'flying', 'alt_rel': 20.006}

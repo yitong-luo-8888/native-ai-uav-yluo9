@@ -1,0 +1,84 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0 -- /home/yitong/uav-native-ai/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/yitong/uav-native-ai/hw06
+configfile: pytest.ini
+collecting ... collected 4 items
+
+tests/integration/test_cancel_resume.py::test_cancel_mid_response_resumes_route FAILED
+tests/integration/test_deliver_then_reject.py::test_deliver_then_second_deliver_rejected FAILED
+tests/integration/test_hover_resume.py::test_hover_stream_completes_and_resumes FAILED
+tests/integration/test_no_repopup.py::test_same_person_reannounced_no_popup PASSED
+
+=================================== FAILURES ===================================
+____________________ test_cancel_mid_response_resumes_route ____________________
+
+real_stack = <conftest.Stack object at 0x7b0b023d7a10>
+
+    @pytest.mark.integration
+    @pytest.mark.stretch
+    def test_cancel_mid_response_resumes_route(real_stack):
+        """R7: cancelling a running hover_stream reports CANCELLED and resumes at the same waypoint."""
+        s = real_stack
+        s.wait_mid_leg()
+        event = s.inject_near_uav(east_m=25.0, confidence=0.9)
+        request = s.wait_request(event["event_id"], timeout=5.0)
+        assert request is not None
+        index_before = s.route_index
+        s.decide(request, "hover_stream", duration_s=300.0)
+        result = s.wait_result(request["request_id"])
+>       assert result and result["approved"]
+E       AssertionError: assert ({'request_id': 'e4b5832d', 'approved': False, 'action_id': None, 'type': 'hover_stream', ...} and False)
+
+tests/integration/test_cancel_resume.py:19: AssertionError
+__________________ test_deliver_then_second_deliver_rejected ___________________
+
+real_stack = <conftest.Stack object at 0x7b0b0228c410>
+
+    @pytest.mark.integration
+    def test_deliver_then_second_deliver_rejected(real_stack):
+        """R6/R7: the first deliver succeeds and removes the kit; a second deliver for a
+        different person is rejected and the operator is re-asked with the reasons."""
+        s = real_stack
+        s.wait_mid_leg()
+    
+        # -- first person: deliver succeeds ---------------------------------------
+        first = s.inject_near_uav(east_m=25.0, confidence=0.9)
+        req1 = s.wait_request(first["event_id"], timeout=5.0)
+        assert req1 is not None
+        assert "deliver" in [c["type"] for c in req1["candidates"]]
+        s.decide(req1, "deliver", item="medical_kit", dwell_s=3.0)
+        res1 = s.wait_result(req1["request_id"])
+>       assert res1 is not None and res1["approved"] is True, res1
+E       AssertionError: {'request_id': '56d384d0', 'approved': False, 'action_id': None, 'type': 'deliver', ...}
+E       assert ({'request_id': '56d384d0', 'approved': False, 'action_id': None, 'type': 'deliver', ...} is not None and False is True)
+
+tests/integration/test_deliver_then_reject.py:21: AssertionError
+___________________ test_hover_stream_completes_and_resumes ____________________
+
+real_stack = <conftest.Stack object at 0x7b0b0228e210>
+
+    @pytest.mark.integration
+    def test_hover_stream_completes_and_resumes(real_stack):
+        """R5/R6/R7: event -> decision_request (<2 s) -> approve hover_stream -> PENDING, RUNNING,
+        COMPLETED -> the route resumes at the SAME waypoint it was heading to before."""
+        s = real_stack
+        s.wait_mid_leg()
+    
+        sent_at = time.time()
+        event = s.inject_near_uav(east_m=25.0, confidence=0.9)
+        request = s.wait_request(event["event_id"], timeout=2.0)
+        assert request is not None, "no decision_request within 2 s of the event"
+        asked_at = next(t for t, topic, p in s.recorder.log
+                        if topic == mqtt_bus.DECISION_REQUEST and p["request_id"] == request["request_id"])
+        assert asked_at - sent_at < 2.0
+    
+        index_before = s.route_index
+        s.decide(request, "hover_stream", standoff_m=10.0, duration_s=10.0)
+        result = s.wait_result(request["request_id"])
+>       assert result is not None and result["approved"] is True, result
+E       AssertionError: {'request_id': 'd291f0b2', 'approved': False, 'action_id': None, 'type': 'hover_stream', ...}
+E       assert ({'request_id': 'd291f0b2', 'approved': False, 'action_id': None, 'type': 'hover_stream', ...} is not None and False is True)
+
+tests/integration/test_hover_resume.py:27: AssertionError
+========================= 3 failed, 1 passed in 8.67s ==========================

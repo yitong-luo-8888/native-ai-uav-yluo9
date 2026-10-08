@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0 -- /home/yitong/uav-native-ai/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/yitong/uav-native-ai/hw06
+configfile: pytest.ini
+collecting ... collected 4 items / 2 deselected / 2 selected
+
+tests/integration/test_deliver_then_reject.py::test_deliver_then_second_deliver_rejected PASSED
+tests/integration/test_hover_resume.py::test_hover_stream_completes_and_resumes PASSED
+
+======================= 2 passed, 2 deselected in 47.77s =======================

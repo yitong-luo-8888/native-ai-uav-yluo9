@@ -1,0 +1,50 @@
+============================= test session starts ==============================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0 -- /home/yitong/uav-native-ai/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/yitong/uav-native-ai/hw06
+configfile: pytest.ini
+collecting ... collected 45 items / 4 deselected / 41 selected
+
+tests/test_candidates.py::test_low_conf_no_deliver PASSED                [  2%]
+tests/test_candidates.py::test_high_conf_has_deliver PASSED              [  4%]
+tests/test_candidates.py::test_parameters_come_from_config PASSED        [  7%]
+tests/test_candidates.py::test_deliver_options_include_kit PASSED        [  9%]
+tests/test_candidates.py::test_eligible_uavs_respect_payload PASSED      [ 12%]
+tests/test_decision_source.py::test_human_decision_source_returns_action PASSED [ 14%]
+tests/test_decision_source.py::test_human_decision_source_dismiss PASSED [ 17%]
+tests/test_decision_source.py::test_human_decision_source_timeout PASSED [ 19%]
+tests/test_decision_source.py::test_late_decision_is_ignored PASSED      [ 21%]
+tests/test_decision_source.py::test_decision_source_is_swappable PASSED  [ 24%]
+tests/test_decision_source.py::test_ai_placeholder_failure_leaves_person_undecided PASSED [ 26%]
+tests/test_executor.py::test_hover_completes_and_resumes_same_waypoint PASSED [ 29%]
+tests/test_executor.py::test_deliver_releases_item_in_planner PASSED     [ 31%]
+tests/test_executor.py::test_circle_starts_due_north_of_target PASSED    [ 34%]
+tests/test_executor.py::test_cancel_stops_response_and_resumes PASSED    [ 36%]
+tests/test_executor.py::test_cancel_for_other_action_is_ignored PASSED   [ 39%]
+tests/test_executor.py::test_busy_uav_rejects_second_response PASSED     [ 41%]
+tests/test_person_registry.py::test_merge_within_10m PASSED              [ 43%]
+tests/test_person_registry.py::test_split_beyond_10m PASSED              [ 46%]
+tests/test_person_registry.py::test_confidence_updated_on_merge PASSED   [ 48%]
+tests/test_person_registry.py::test_decided_person_no_repopup PASSED     [ 51%]
+tests/test_person_registry.py::test_dismissed_person_no_repopup PASSED   [ 53%]
+tests/test_person_registry.py::test_timedout_person_can_repopup PASSED   [ 56%]
+tests/test_planner_loop.py::test_event_triggers_decision_request PASSED  [ 58%]
+tests/test_planner_loop.py::test_dismiss_marks_person_decided PASSED     [ 60%]
+tests/test_planner_loop.py::test_rejection_reask_carries_reasons PASSED  [ 63%]
+tests/test_planner_loop.py::test_timeout_marks_person_undecided PASSED   [ 65%]
+tests/test_planner_loop.py::test_low_confidence_restricts_menu PASSED    [ 68%]
+tests/test_planner_loop.py::test_responded_person_reannounced_no_popup PASSED [ 70%]
+tests/test_planner_loop.py::test_duplicate_event_delivery_is_idempotent PASSED [ 73%]
+tests/test_planner_loop.py::test_action_result_keys_match_popup PASSED   [ 75%]
+tests/test_validator.py::test_valid_hover_approved PASSED                [ 78%]
+tests/test_validator.py::test_deliver_without_kit_rejected PASSED        [ 80%]
+tests/test_validator.py::test_battery_reserve_rejected PASSED            [ 82%]
+tests/test_validator.py::test_battery_boundary_approved[hover_stream] PASSED [ 85%]
+tests/test_validator.py::test_battery_boundary_approved[circle_stream] PASSED [ 87%]
+tests/test_validator.py::test_battery_boundary_approved[deliver] PASSED  [ 90%]
+tests/test_validator.py::test_rejection_reasons_are_nonempty_strings PASSED [ 92%]
+tests/test_validator.py::test_unknown_battery_rejected PASSED            [ 95%]
+tests/test_validator.py::test_low_confidence_deliver_rejected_even_if_chosen PASSED [ 97%]
+tests/test_validator.py::test_popup_string_parameters_are_coerced PASSED [100%]
+
+======================= 41 passed, 4 deselected in 0.97s =======================
