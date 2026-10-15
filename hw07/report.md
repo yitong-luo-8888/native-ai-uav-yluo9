@@ -312,6 +312,13 @@ limitation (see technical debt).
 
 **Recording:** *(link to be added after recording `bash hw07/run_demo.sh`)*
 
+**Screenshot (full run 3): `evidence/e2e/full-run-3-gui/`.** Oct. 15, 08:58–09:02, stopped
+after 4½ minutes. `run_demo.sh` now saves a window grab every 30 s (`gui_autostart.py
+--shots`). `screenshots/gui-0120s.png` was taken at 09:01:13, mid-hover: Fuchsia hovers over
+Ethan's cap after the AI's `inspect_closer` was approved (09:00:38, `hover_stream` 5bcef7ec), and
+the cap shows in its camera pane. The doll went to `log_only` (low; `ignore` in run 2, and both
+are acceptable), and as in run 2, the cap's re-report was rejected (busy, same spot). Slide 6 uses this screenshot.
+
 ## 7. Technical debt
 
 - **No in-flight escalation from hover to converge.** The planner's hover is the

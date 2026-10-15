@@ -42,6 +42,8 @@ def main():
     parser.add_argument("--lat", type=float, default=41.69940)
     parser.add_argument("--lon", type=float, default=-86.23705)
     parser.add_argument("--zoom", type=int, default=19)
+    parser.add_argument("--shots", help="save a screenshot of the window here every --every seconds")
+    parser.add_argument("--every", type=int, default=10)
     args = parser.parse_args()
 
     camera_cfg = CameraConfig.from_file(os.path.join(GUI_SRC, "camera.config"))
@@ -80,6 +82,20 @@ def main():
     # 2. FavoriteAreasPane.apply_default() re-centred the map during construction; centre on the search area
     QTimer.singleShot(300, lambda: w._map_view.set_center(args.lat, args.lon, args.zoom))
     log("window up")
+
+    shot_timer = QTimer()
+    if args.shots:
+        os.makedirs(args.shots, exist_ok=True)
+        shots = []
+
+        def save_shot():
+            shots.append(None)
+            path = os.path.join(args.shots, f"gui-{len(shots) * args.every:04d}s.png")
+            w.grab().save(path)
+            log(f"screenshot {path}")
+
+        shot_timer.timeout.connect(save_shot)
+        shot_timer.start(args.every * 1000)
 
     signal.signal(signal.SIGINT, lambda *_: w.close())
     signal.signal(signal.SIGTERM, lambda *_: w.close())

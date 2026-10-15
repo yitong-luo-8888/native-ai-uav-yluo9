@@ -1,0 +1,59 @@
+08:59:12 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=0.002 activity=taking_off battery_level=1.0
+08:59:17 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=0.0 activity=idle battery_level=1.0
+08:59:23 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=-0.002 activity=idle battery_level=1.0
+08:59:28 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=-0.003 activity=idle battery_level=1.0
+08:59:33 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=1.193 activity=taking_off battery_level=0.99
+08:59:38 uav/1/telemetry lat=41.6988447 lon=-86.2370551 alt_rel=13.225 activity=taking_off battery_level=0.98
+08:59:41 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 1 of 10"}
+08:59:43 uav/1/telemetry lat=41.6988447 lon=-86.2370553 alt_rel=19.893 activity=flying battery_level=0.97
+08:59:49 uav/1/telemetry lat=41.698939 lon=-86.2374343 alt_rel=19.992 activity=flying battery_level=0.95
+08:59:53 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 2 of 10"}
+08:59:54 uav/1/telemetry lat=41.6990233 lon=-86.2377744 alt_rel=20.015 activity=flying battery_level=0.94
+08:59:59 uav/1/telemetry lat=41.6990258 lon=-86.2375624 alt_rel=20.016 activity=flying battery_level=0.93
+09:00:04 uav/1/telemetry lat=41.699025 lon=-86.2369468 alt_rel=20.01 activity=flying battery_level=0.91
+09:00:09 uav/1/telemetry lat=41.6990242 lon=-86.2364505 alt_rel=20.0 activity=flying battery_level=0.9
+09:00:11 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 3 of 10"}
+09:00:14 uav/1/telemetry lat=41.6990888 lon=-86.2363239 alt_rel=20.0 activity=flying battery_level=0.89
+09:00:17 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 4 of 10"}
+09:00:19 uav/1/telemetry lat=41.6992109 lon=-86.2363582 alt_rel=19.999 activity=flying battery_level=0.88
+09:00:22 mission/clues {"assessment_id": "1700aca3", "candidate": "dc04097a", "object": "small doll with blonde hair and pink dress", "relevance": "low", "decision": {"rationale": "Relevance is low: the doll matches none of Ethan's listed clothing or belongings and is most likely someone else's dropped toy, so policy calls for logging it only.", "action": "log_only", "search_radius_m": null, "priority": null, "guard": []}, "search_center": null}
+09:00:25 uav/1/telemetry lat=41.6992077 lon=-86.2368881 alt_rel=19.997 activity=flying battery_level=0.86
+09:00:30 uav/1/telemetry lat=41.6992048 lon=-86.2375071 alt_rel=20.014 activity=flying battery_level=0.85
+09:00:34 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 5 of 10"}
+09:00:35 uav/1/telemetry lat=41.6992037 lon=-86.2377859 alt_rel=20.0 activity=flying battery_level=0.84
+09:00:38 mission/clues {"assessment_id": "48fed369", "candidate": "86217ee0", "object": "small blue object with a white-grey central patch (unidentified)", "relevance": "medium", "decision": {"rationale": "Relevance is medium and no closer look has been taken yet, so policy calls for one zoomed inspection to confirm whether this is Ethan's navy cap before committing a drone to a converge search.", "action": "inspect_closer", "search_radius_m": null, "priority": null, "guard": []}, "search_center": null}
+09:00:38 mission/action_result {"request_id": "clue-48fed369", "approved": true, "action_id": "5bcef7ec", "type": "hover_stream", "uav": "1", "reasons": [], "notes": [], "decided_by": "ai", "assessment_id": "48fed369", "proposal": "inspect_closer", "object": "small blue object with a white-grey central patch (unidentified)"}
+09:00:38 mission/behavior_status {"uav": "1", "action_id": "5bcef7ec", "behavior": "hover_stream", "state": "PENDING", "detail": "hover_stream approved; will resume at waypoint 5 of 10"}
+09:00:38 mission/behavior_status {"uav": "1", "action_id": "5bcef7ec", "behavior": "hover_stream", "state": "RUNNING", "detail": "hover_stream: leaving route at waypoint 5 of 10", "stream_required": true}
+09:00:39 mission/behavior_status {"uav": "1", "action_id": "5bcef7ec", "behavior": "hover_stream", "state": "RUNNING", "detail": "flying to 0 m standoff", "stream_required": true}
+09:00:40 uav/1/telemetry lat=41.6993631 lon=-86.2377777 alt_rel=19.991 activity=flying battery_level=0.83
+09:00:45 uav/1/telemetry lat=41.6992302 lon=-86.2375617 alt_rel=20.0 activity=flying battery_level=0.81
+09:00:48 mission/behavior_status {"uav": "1", "action_id": "5bcef7ec", "behavior": "hover_stream", "state": "RUNNING", "detail": "hovering and streaming for 60 s", "stream_required": true}
+09:00:50 uav/1/telemetry lat=41.6991465 lon=-86.2374452 alt_rel=19.994 activity=flying battery_level=0.8
+09:00:55 uav/1/telemetry lat=41.6991497 lon=-86.237449 alt_rel=19.992 activity=flying battery_level=0.79
+09:01:00 uav/1/telemetry lat=41.6991499 lon=-86.2374495 alt_rel=19.99 activity=flying battery_level=0.78
+09:01:06 uav/1/telemetry lat=41.6991499 lon=-86.2374497 alt_rel=19.993 activity=flying battery_level=0.77
+09:01:11 uav/1/telemetry lat=41.69915 lon=-86.2374497 alt_rel=19.993 activity=flying battery_level=0.76
+09:01:11 mission/clues {"assessment_id": "01ec957c", "candidate": "d08aa3b7", "object": "blue round object with a pale whitish-grey patch, possibly a blue cap or hat", "relevance": "medium", "decision": {"rationale": "Relevance is medium and no closer look has been taken yet, so policy calls for inspect_closer to confirm whether this is Ethan's navy cap with the grey front panel before committing a drone to a converge search.", "action": "inspect_closer", "search_radius_m": null, "priority": null, "guard": []}, "search_center": null}
+09:01:11 mission/action_result {"request_id": "clue-01ec957c", "approved": false, "action_id": null, "type": "hover_stream", "uav": "1", "reasons": ["UAV 1 is already executing hover_stream (action 5bcef7ec); cancel it first or choose another UAV.", "A hover_stream within 5 m of this spot was already approved (action 5bcef7ec); not flying it again."], "notes": [], "decided_by": "ai", "assessment_id": "01ec957c", "proposal": "inspect_closer", "object": "blue round object with a pale whitish-grey patch, possibly a blue cap or hat"}
+09:01:16 uav/1/telemetry lat=41.69915 lon=-86.2374497 alt_rel=19.995 activity=flying battery_level=0.75
+09:01:21 uav/1/telemetry lat=41.69915 lon=-86.2374497 alt_rel=19.996 activity=flying battery_level=0.74
+09:01:26 uav/1/telemetry lat=41.69915 lon=-86.2374498 alt_rel=19.998 activity=flying battery_level=0.72
+09:01:31 uav/1/telemetry lat=41.69915 lon=-86.2374497 alt_rel=19.998 activity=flying battery_level=0.71
+09:01:37 uav/1/telemetry lat=41.69915 lon=-86.2374498 alt_rel=19.997 activity=flying battery_level=0.7
+09:01:42 uav/1/telemetry lat=41.69915 lon=-86.2374497 alt_rel=19.999 activity=flying battery_level=0.69
+09:01:47 uav/1/telemetry lat=41.69915 lon=-86.2374497 alt_rel=19.999 activity=flying battery_level=0.67
+09:01:48 mission/behavior_status {"uav": "1", "action_id": "5bcef7ec", "behavior": "hover_stream", "state": "COMPLETED", "detail": "hover_stream complete; resuming at waypoint 5 of 10"}
+09:01:48 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 5 of 10"}
+09:01:52 uav/1/telemetry lat=41.6992415 lon=-86.2375792 alt_rel=20.01 activity=flying battery_level=0.66
+09:01:56 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 6 of 10"}
+09:01:57 uav/1/telemetry lat=41.6993884 lon=-86.2377785 alt_rel=20.001 activity=flying battery_level=0.65
+09:02:02 uav/1/telemetry lat=41.6993882 lon=-86.2374012 alt_rel=20.008 activity=flying battery_level=0.64
+09:02:08 uav/1/telemetry lat=41.6993852 lon=-86.2367703 alt_rel=20.018 activity=flying battery_level=0.62
+09:02:13 uav/1/telemetry lat=41.6993835 lon=-86.2363577 alt_rel=20.005 activity=flying battery_level=0.61
+09:02:13 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 7 of 10"}
+09:02:18 uav/1/telemetry lat=41.6995273 lon=-86.2363289 alt_rel=19.987 activity=flying battery_level=0.6
+09:02:18 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 8 of 10"}
+09:02:23 uav/1/telemetry lat=41.6995676 lon=-86.2364578 alt_rel=19.994 activity=flying battery_level=0.59
+09:02:28 uav/1/telemetry lat=41.6995651 lon=-86.2370503 alt_rel=20.001 activity=flying battery_level=0.57
+09:02:33 uav/1/telemetry lat=41.6995636 lon=-86.2375864 alt_rel=20.01 activity=flying battery_level=0.56

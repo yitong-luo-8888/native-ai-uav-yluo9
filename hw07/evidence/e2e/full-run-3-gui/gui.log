@@ -1,0 +1,26 @@
+[gui] scene 'lost-boy-north-gate' shown (7 objects)
+[gui] window up
+MQTT connected with rc = 0
+Subscribed to topic: update_drone
+[gui] camera Fuchsia: STREAMING
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0010s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0020s.png
+[gui] first camera frame from Fuchsia published
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0030s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0040s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0050s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0060s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0070s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0080s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0090s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0100s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0110s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0120s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0130s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0140s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0150s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0160s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0170s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0180s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0190s.png
+[gui] screenshot /home/yitong/uav-native-ai/hw07/evidence/e2e/20261015-085755/screenshots/gui-0200s.png

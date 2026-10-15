@@ -17,7 +17,8 @@
 #   6. starts the MQTT recorder, the HW6 planner (takes off, flies the route) and the detector
 #   7. prints every proposal, verdict and status line until you press Ctrl+C or close the GUI
 #
-# Logs: hw07/evidence/e2e/<timestamp>/{gui,planner,detector,docker}.log and topics.log.
+# Logs: hw07/evidence/e2e/<timestamp>/{gui,planner,detector,docker}.log and topics.log;
+# GUI screenshots every 30 s in screenshots/.
 set -u
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PY="$ROOT/.venv/bin/python"
@@ -101,7 +102,7 @@ step "4/7 Scene for new-gui"
 GUI_PID=""
 if [[ $GUI == 1 ]]; then
     step "5/7 new-gui (the window opens on your desktop via WSLg)"
-    "$PY" -u "$ROOT/hw07/tools/gui_autostart.py" > "$OUT/gui.log" 2>&1 & GUI_PID=$!; PIDS+=($GUI_PID)
+    "$PY" -u "$ROOT/hw07/tools/gui_autostart.py" --shots "$OUT/screenshots" --every 30 > "$OUT/gui.log" 2>&1 & GUI_PID=$!; PIDS+=($GUI_PID)
     for _ in $(seq 1 60); do grep -q "camera Fuchsia: STREAMING" "$OUT/gui.log" && break
         kill -0 "$GUI_PID" 2>/dev/null || { echo "!! GUI exited:"; tail -n 20 "$OUT/gui.log"; cleanup; }
         sleep 1; done

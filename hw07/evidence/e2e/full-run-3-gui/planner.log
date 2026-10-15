@@ -1,0 +1,5 @@
+08:59:11 planner: Planner up: UAVs 1, deliver threshold 0.35, decision timeout 180s
+08:59:12 planner.executor: UAV 1 taking off to 20 m
+09:00:22 planner.clues: AI clue 1700aca3: small doll with blonde hair and pink dress -> log_only; no flight (low)
+09:00:38 planner.clues: Approved AI hover_stream on UAV 1 for clue 48fed369 (small blue object with a white-grey central patch (unidentified)) as 5bcef7ec
+09:01:11 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 01ec957c: UAV 1 is already executing hover_stream (action 5bcef7ec); cancel it first or choose another UAV. A hover_stream within 5 m of this spot was already approved (action 5bcef7ec); not flying it again.
