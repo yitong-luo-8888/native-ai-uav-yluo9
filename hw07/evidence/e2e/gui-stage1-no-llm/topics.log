@@ -1,0 +1,37 @@
+02:16:15 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=-0.001 activity=idle battery_level=1.0
+02:16:20 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=-0.002 activity=idle battery_level=1.0
+02:16:25 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=0.006 activity=taking_off battery_level=1.0
+02:16:30 uav/1/telemetry lat=41.6988446 lon=-86.2370551 alt_rel=4.292 activity=taking_off battery_level=0.99
+02:16:35 uav/1/telemetry lat=41.6988447 lon=-86.2370552 alt_rel=16.53 activity=taking_off battery_level=0.97
+02:16:37 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 1 of 10"}
+02:16:40 uav/1/telemetry lat=41.698849 lon=-86.2370725 alt_rel=19.968 activity=flying battery_level=0.96
+02:16:45 uav/1/telemetry lat=41.698966 lon=-86.2375425 alt_rel=20.02 activity=flying battery_level=0.95
+02:16:49 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 2 of 10"}
+02:16:51 uav/1/telemetry lat=41.6990264 lon=-86.2377833 alt_rel=20.009 activity=flying battery_level=0.94
+02:16:56 uav/1/telemetry lat=41.6990261 lon=-86.2374026 alt_rel=20.012 activity=flying battery_level=0.92
+02:17:01 uav/1/telemetry lat=41.6990248 lon=-86.2367439 alt_rel=20.013 activity=flying battery_level=0.91
+02:17:06 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 3 of 10"}
+02:17:06 uav/1/telemetry lat=41.6990241 lon=-86.2363498 alt_rel=19.998 activity=flying battery_level=0.9
+02:17:11 uav/1/telemetry lat=41.6991445 lon=-86.2363289 alt_rel=19.99 activity=flying battery_level=0.89
+02:17:13 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 4 of 10"}
+02:17:16 uav/1/telemetry lat=41.6992082 lon=-86.2364018 alt_rel=19.995 activity=flying battery_level=0.87
+02:17:22 uav/1/telemetry lat=41.6992056 lon=-86.2369599 alt_rel=19.999 activity=flying battery_level=0.86
+02:17:27 uav/1/telemetry lat=41.6992043 lon=-86.2375169 alt_rel=20.014 activity=flying battery_level=0.85
+02:17:30 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 5 of 10"}
+02:17:32 uav/1/telemetry lat=41.6992131 lon=-86.2377883 alt_rel=20.001 activity=flying battery_level=0.84
+02:17:36 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 6 of 10"}
+02:17:37 uav/1/telemetry lat=41.699382 lon=-86.2377783 alt_rel=19.996 activity=flying battery_level=0.82
+02:17:42 uav/1/telemetry lat=41.6993867 lon=-86.2375169 alt_rel=20.002 activity=flying battery_level=0.81
+02:17:47 uav/1/telemetry lat=41.6993845 lon=-86.2368941 alt_rel=20.002 activity=flying battery_level=0.8
+02:17:52 uav/1/telemetry lat=41.6993834 lon=-86.2364068 alt_rel=19.994 activity=flying battery_level=0.78
+02:17:54 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 7 of 10"}
+02:17:57 uav/1/telemetry lat=41.6994596 lon=-86.2363256 alt_rel=19.997 activity=flying battery_level=0.77
+02:18:00 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 8 of 10"}
+02:18:03 uav/1/telemetry lat=41.6995712 lon=-86.2363941 alt_rel=19.997 activity=flying battery_level=0.76
+02:18:08 uav/1/telemetry lat=41.6995679 lon=-86.2368537 alt_rel=19.995 activity=flying battery_level=0.75
+02:18:13 uav/1/telemetry lat=41.6995645 lon=-86.2374781 alt_rel=20.015 activity=flying battery_level=0.74
+02:18:17 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 9 of 10"}
+02:18:18 uav/1/telemetry lat=41.6995654 lon=-86.2377858 alt_rel=19.998 activity=flying battery_level=0.72
+02:18:23 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 10 of 10"}
+02:18:23 uav/1/telemetry lat=41.6997376 lon=-86.2377787 alt_rel=19.993 activity=flying battery_level=0.71
+02:18:28 uav/1/telemetry lat=41.6997484 lon=-86.2374657 alt_rel=20.001 activity=flying battery_level=0.7

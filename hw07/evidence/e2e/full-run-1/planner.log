@@ -1,0 +1,16 @@
+03:10:24 planner: Planner up: UAVs 1, deliver threshold 0.35, decision timeout 180s
+03:10:24 planner.executor: UAV 1 taking off to 20 m
+03:11:30 planner.clues: AI clue 7fc7c7e1: small doll with blonde hair and pink dress -> log_only; no flight (low)
+03:11:48 planner.clues: Approved AI hover_stream on UAV 1 for clue 66c3e48a (blue object with a pale grey-white central patch, unidentifiable) as 9105df86
+03:12:19 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 6a49fabd: UAV 1 is already executing hover_stream (action 9105df86); cancel it first or choose another UAV.
+03:12:48 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 16ab9ae1: UAV 1 is already executing hover_stream (action 9105df86); cancel it first or choose another UAV.
+03:13:21 planner.clues: Approved AI hover_stream on UAV 1 for clue 7e2e1c6e (white five-lobed flower-shaped object with dark centre) as 9ec6aeba
+03:13:30 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 39fc0b90: UAV 1 is already executing hover_stream (action 9ec6aeba); cancel it first or choose another UAV.
+03:13:51 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 23b804c5: UAV 1 is already executing hover_stream (action 9ec6aeba); cancel it first or choose another UAV.
+03:14:21 planner.clues: Rejected AI hover_stream (inspect_closer) for clue ad291b24: UAV 1 is already executing hover_stream (action 9ec6aeba); cancel it first or choose another UAV.
+03:14:46 planner.clues: Approved AI hover_stream on UAV 1 for clue 3c11d133 (blue object of unclear type, possibly a garment or bag) as e100b1d4
+03:15:17 planner.clues: AI clue c1624cd7: blue knit beanie or hat, possibly with a darker band at the base -> log_only; no flight (low)
+03:15:48 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 057a866c: UAV 1 battery 27% is below the 25% reserve plus 5% hover_stream cost (30% needed). UAV 1 is already executing hover_stream (action e100b1d4); cancel it first or choose another UAV.
+03:16:12 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 9d3f9bb4: UAV 1 battery 21% is below the 25% reserve plus 5% hover_stream cost (30% needed).
+03:16:22 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 2dade152: UAV 1 battery 18% is below the 25% reserve plus 5% hover_stream cost (30% needed).
+03:16:34 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 7dac73eb: UAV 1 battery 16% is below the 25% reserve plus 5% hover_stream cost (30% needed).

@@ -1,0 +1,852 @@
+MISSION lost-boy-north-gate: looking for Ethan -- 8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.
+  last seen 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on; search altitude 20.0 m
+  stage images saved under /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/
+
+====================================================================================================
+CLUE e01  run 1/1   image navy-cap-grey-front.png
+  STAGE 1 (detect, offline oracle): candidate e01 at (41.699150, -86.237450), label 'unknown', crop 0.001 m/px at 20.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 33 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/e01/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.14 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 232 out tokens, $0.0063, 4.7 s):
+  │   {
+  │     "observations": "Seen from above, a rounded dark blue dome with faint panel seams radiating from the top. A light grey fan-shaped panel sits at the lower front of the dome. A darker blue curved brim or rim extends below and around the lower edge. It lies on green grass and is small and slightly blurry.",
+  │     "object_type": "navy baseball cap with grey front panel, brim pointing down",
+  │     "category": "headwear",
+  │     "colors": [
+  │       "navy",
+  │       "light grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "grey fan-shaped panel on the front",
+  │       "panel seams radiating across the crown",
+  │       "curved navy brim"
+  │     ],
+  │     "estimated_size_cm": 19.0,
+  │     "wearer_size": "child",
+  │     "confidence": "medium",
+  │     "needs_closer_look": true
+  │   }
+  └─
+
+  >> CLOSER LOOK (describe could not tell): zoomed view of e01
+
+  ┌─ call 2: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 65 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/e01/02-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, ZOOMED closer-look view (6x).
+  │   Ground scale: 0.15 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1969 in / 243 out tokens, $0.0064, 2.8 s):
+  │   {
+  │     "observations": "Seen from above, a round cap crown divided into five panels meeting at a small central button. Three panels (top and sides) are dark blue and two lower panels are light grey. Small dots (eyelets) are visible on the blue panels. A dark blue curved brim extends below the crown at the bottom, with a dark outline around the whole object.",
+  │     "object_type": "blue baseball cap with grey front panels",
+  │     "category": "headwear",
+  │     "colors": [
+  │       "navy blue",
+  │       "light grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "five-panel crown",
+  │       "central top button",
+  │       "two light grey front panels",
+  │       "small eyelet holes on blue panels",
+  │       "curved navy brim"
+  │     ],
+  │     "estimated_size_cm": 21.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 3: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Ethan, age 8
+  │   Summary: 8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.
+  │   Clothing:
+  │     - navy-blue baseball cap with a grey front panel, worn backwards
+  │     - green short-sleeved t-shirt
+  │     - blue denim shorts
+  │     - black rubber wristband on his left wrist
+  │     - white sneakers
+  │   Belongings:
+  │     - small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back
+  │   Other details:
+  │     - Brown hair, freckles
+  │     - Curious and restless; likely to wander toward open grass or anything interesting rather than stay put
+  │   Last seen: 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on
+  │   Conditions: Sunny, 21 C, light wind. Game day: crowds, tailgate gear and litter on the grass north of the stadium.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "Seen from above, a round cap crown divided into five panels meeting at a small central button. Three panels (top and sides) are dark blue and two lower panels are light grey. Small dots (eyelets) are visible on the blue panels. A dark blue curved brim extends below the crown at the bottom, with a dark outline around the whole object.",
+  │     "object_type": "blue baseball cap with grey front panels",
+  │     "category": "headwear",
+  │     "colors": [
+  │       "navy blue",
+  │       "light grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "five-panel crown",
+  │       "central top button",
+  │       "two light grey front panels",
+  │       "small eyelet holes on blue panels",
+  │       "curved navy brim"
+  │     ],
+  │     "estimated_size_cm": 21.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2394 in / 229 out tokens, $0.0071, 2.8 s):
+  │   {
+  │     "possible_items": [
+  │       "navy-blue baseball cap with a grey front panel, worn backwards"
+  │     ],
+  │     "candidate_item": "navy-blue baseball cap with a grey front panel, worn backwards",
+  │     "matches": [
+  │       "baseball cap, same kind of object",
+  │       "navy blue main colour",
+  │       "light grey front panels match grey front panel",
+  │       "child-sized (about 21 cm)",
+  │       "curved navy brim consistent with a baseball cap"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized navy baseball cap with grey front panels, matching the listed cap in kind, colours and size, with nothing contradicting it. The backwards wearing is not relevant to a cap lying on the ground.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 4: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Ethan; last seen 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on.
+  │   Object: blue baseball cap with grey front panels (describe confidence high).
+  │   Distance from the last known point: 62 m (computed by the planner).
+  │   A closer look HAS ALREADY BEEN TAKEN: inspect_closer is not available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "navy-blue baseball cap with a grey front panel, worn backwards"
+  │     ],
+  │     "candidate_item": "navy-blue baseball cap with a grey front panel, worn backwards",
+  │     "matches": [
+  │       "baseball cap, same kind of object",
+  │       "navy blue main colour",
+  │       "light grey front panels match grey front panel",
+  │       "child-sized (about 21 cm)",
+  │       "curved navy brim consistent with a baseball cap"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized navy baseball cap with grey front panels, matching the listed cap in kind, colours and size, with nothing contradicting it. The backwards wearing is not relevant to a cap lying on the ground.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1498 in / 142 out tokens, $0.0044, 2.3 s):
+  │   {
+  │     "rationale": "Relevance is high with a full match on kind, colour and size and no mismatches, so policy calls for converge_search. The cap is 62 m from the last known point and Ethan has had 45 minutes to move on, so a moderately wide radius is warranted; a cap is fairly specific but not uniquely identifying, so priority is medium.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 90.0,
+  │     "priority": "medium"
+  │   }
+  └─
+
+  >> SEARCH CENTRE set by code to the candidate's position (41.699150, -86.237450), radius 90 m
+
+  RESULT e01 run 1: 'blue baseball cap with grey front panels' -> relevance high, action converge_search  ($0.0241, 4 calls)
+  TRUTH: RELEVANT, acceptable ['converge_search'] -- His cap: navy with a grey front panel, child size; it came off as he went.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE e02  run 1/1   image orange-dino-backpack.png
+  STAGE 1 (detect, offline oracle): candidate e02 at (41.699600, -86.236600), label 'unknown', crop 0.002 m/px at 20.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 35 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/e02/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.18 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 314 out tokens, $0.0071, 3.1 s):
+  │   {
+  │     "observations": "A small orange backpack seen from above, lying flat on green grass. It has a rounded top with a dark carry handle loop, dark shoulder straps visible at the upper sides, and a large front pocket with a darker orange panel. On the pocket is a white oval patch with a green animal-like figure, possibly a dinosaur. A small light-coloured tag or zipper pull sits at the top right corner of the pocket.",
+  │     "object_type": "orange child's backpack with white oval dinosaur patch",
+  │     "category": "bag",
+  │     "colors": [
+  │       "orange",
+  │       "dark orange",
+  │       "white",
+  │       "green",
+  │       "dark grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "white oval patch with green dinosaur-like figure on front pocket",
+  │       "dark carry handle on top",
+  │       "dark shoulder straps",
+  │       "large front pocket with darker orange panel",
+  │       "small light tag or zipper pull at top right of pocket"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Ethan, age 8
+  │   Summary: 8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.
+  │   Clothing:
+  │     - navy-blue baseball cap with a grey front panel, worn backwards
+  │     - green short-sleeved t-shirt
+  │     - blue denim shorts
+  │     - black rubber wristband on his left wrist
+  │     - white sneakers
+  │   Belongings:
+  │     - small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back
+  │   Other details:
+  │     - Brown hair, freckles
+  │     - Curious and restless; likely to wander toward open grass or anything interesting rather than stay put
+  │   Last seen: 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on
+  │   Conditions: Sunny, 21 C, light wind. Game day: crowds, tailgate gear and litter on the grass north of the stadium.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A small orange backpack seen from above, lying flat on green grass. It has a rounded top with a dark carry handle loop, dark shoulder straps visible at the upper sides, and a large front pocket with a darker orange panel. On the pocket is a white oval patch with a green animal-like figure, possibly a dinosaur. A small light-coloured tag or zipper pull sits at the top right corner of the pocket.",
+  │     "object_type": "orange child's backpack with white oval dinosaur patch",
+  │     "category": "bag",
+  │     "colors": [
+  │       "orange",
+  │       "dark orange",
+  │       "white",
+  │       "green",
+  │       "dark grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "white oval patch with green dinosaur-like figure on front pocket",
+  │       "dark carry handle on top",
+  │       "dark shoulder straps",
+  │       "large front pocket with darker orange panel",
+  │       "small light tag or zipper pull at top right of pocket"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2474 in / 238 out tokens, $0.0073, 2.8 s):
+  │   {
+  │     "possible_items": [
+  │       "small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back"
+  │     ],
+  │     "candidate_item": "small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back",
+  │     "matches": [
+  │       "same kind of object: backpack",
+  │       "main colour orange",
+  │       "green dinosaur-like figure on a patch on the front pocket",
+  │       "child-sized (about 28 cm)",
+  │       "front pocket present"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a small orange child's backpack with a green dinosaur-like patch on the front pocket, matching Ethan's listed backpack in kind, colour, size and distinctive feature, with no contradictions. High-confidence description.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Ethan; last seen 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on.
+  │   Object: orange child's backpack with white oval dinosaur patch (describe confidence high).
+  │   Distance from the last known point: 132 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back"
+  │     ],
+  │     "candidate_item": "small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back",
+  │     "matches": [
+  │       "same kind of object: backpack",
+  │       "main colour orange",
+  │       "green dinosaur-like figure on a patch on the front pocket",
+  │       "child-sized (about 28 cm)",
+  │       "front pocket present"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a small orange child's backpack with a green dinosaur-like patch on the front pocket, matching Ethan's listed backpack in kind, colour, size and distinctive feature, with no contradictions. High-confidence description.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1500 in / 155 out tokens, $0.0046, 2.4 s):
+  │   {
+  │     "rationale": "Relevance is high: the orange child's backpack with the dinosaur patch matches Ethan's backpack in kind, colour, size and distinctive feature, with no mismatches, so policy calls for converge_search. It is 132 m from the last known point and he could have walked on since 45 minutes ago, so a wide radius is warranted, and the patch makes it very specific to him.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 140.0,
+  │     "priority": "high"
+  │   }
+  └─
+
+  >> SEARCH CENTRE set by code to the candidate's position (41.699600, -86.236600), radius 140 m
+
+  RESULT e02 run 1: "orange child's backpack with white oval dinosaur patch" -> relevance high, action converge_search  ($0.0190, 3 calls)
+  TRUTH: RELEVANT, acceptable ['converge_search'] -- His orange backpack with the green dinosaur patch, which he had on when last seen.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE e03  run 1/1   image navy-knit-beanie.png
+  STAGE 1 (detect, offline oracle): candidate e03 at (41.699370, -86.236900), label 'unknown', crop 0.002 m/px at 20.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 26 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/e03/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.18 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 228 out tokens, $0.0062, 2.7 s):
+  │   {
+  │     "observations": "A dome-shaped knitted hat lying on green grass, seen from the front. It is a uniform blue with a slightly darker, wider ribbed band at the bottom edge and a small round pompom on top. The texture looks like fine knit, and there are no visible logos, stripes or patches.",
+  │     "object_type": "blue knitted beanie with pompom and folded cuff",
+  │     "category": "headwear",
+  │     "colors": [
+  │       "blue",
+  │       "navy"
+  │     ],
+  │     "distinctive_features": [
+  │       "round pompom on top",
+  │       "darker ribbed folded cuff at the brim",
+  │       "plain solid colour with no visible logo"
+  │     ],
+  │     "estimated_size_cm": 26.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Ethan, age 8
+  │   Summary: 8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.
+  │   Clothing:
+  │     - navy-blue baseball cap with a grey front panel, worn backwards
+  │     - green short-sleeved t-shirt
+  │     - blue denim shorts
+  │     - black rubber wristband on his left wrist
+  │     - white sneakers
+  │   Belongings:
+  │     - small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back
+  │   Other details:
+  │     - Brown hair, freckles
+  │     - Curious and restless; likely to wander toward open grass or anything interesting rather than stay put
+  │   Last seen: 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on
+  │   Conditions: Sunny, 21 C, light wind. Game day: crowds, tailgate gear and litter on the grass north of the stadium.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A dome-shaped knitted hat lying on green grass, seen from the front. It is a uniform blue with a slightly darker, wider ribbed band at the bottom edge and a small round pompom on top. The texture looks like fine knit, and there are no visible logos, stripes or patches.",
+  │     "object_type": "blue knitted beanie with pompom and folded cuff",
+  │     "category": "headwear",
+  │     "colors": [
+  │       "blue",
+  │       "navy"
+  │     ],
+  │     "distinctive_features": [
+  │       "round pompom on top",
+  │       "darker ribbed folded cuff at the brim",
+  │       "plain solid colour with no visible logo"
+  │     ],
+  │     "estimated_size_cm": 26.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2373 in / 233 out tokens, $0.0071, 2.3 s):
+  │   {
+  │     "possible_items": [
+  │       "navy-blue baseball cap with a grey front panel, worn backwards"
+  │     ],
+  │     "candidate_item": "navy-blue baseball cap with a grey front panel, worn backwards",
+  │     "matches": [
+  │       "headwear",
+  │       "blue/navy colour",
+  │       "child size"
+  │     ],
+  │     "mismatches": [
+  │       "knitted beanie with pompom and folded cuff is a different kind of object than a baseball cap",
+  │       "no grey front panel or visor visible; plain solid colour"
+  │     ],
+  │     "rationale": "The only listed headwear is a navy baseball cap, but the object is clearly identified with high confidence as a knitted pompom beanie, which is a different kind of object. Colour alone is not enough, so this is a hard mismatch.",
+  │     "relevance": "low"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Ethan; last seen 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on.
+  │   Object: blue knitted beanie with pompom and folded cuff (describe confidence high).
+  │   Distance from the last known point: 104 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "navy-blue baseball cap with a grey front panel, worn backwards"
+  │     ],
+  │     "candidate_item": "navy-blue baseball cap with a grey front panel, worn backwards",
+  │     "matches": [
+  │       "headwear",
+  │       "blue/navy colour",
+  │       "child size"
+  │     ],
+  │     "mismatches": [
+  │       "knitted beanie with pompom and folded cuff is a different kind of object than a baseball cap",
+  │       "no grey front panel or visor visible; plain solid colour"
+  │     ],
+  │     "rationale": "The only listed headwear is a navy baseball cap, but the object is clearly identified with high confidence as a knitted pompom beanie, which is a different kind of object. Colour alone is not enough, so this is a hard mismatch.",
+  │     "relevance": "low"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1498 in / 87 out tokens, $0.0039, 2.3 s):
+  │   {
+  │     "rationale": "Relevance is low because the knitted pompom beanie is a different kind of object than the navy baseball cap Ethan was described wearing, so the policy calls for logging it only.",
+  │     "action": "log_only",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT e03 run 1: 'blue knitted beanie with pompom and folded cuff' -> relevance low, action log_only  ($0.0172, 3 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- Navy like his cap, but a knit beanie, not a baseball cap with a grey front.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE e04  run 1/1   image mans-brown-oxford-shoe.png
+  STAGE 1 (detect, offline oracle): candidate e04 at (41.699680, -86.237600), label 'unknown', crop 0.002 m/px at 20.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 32 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/e04/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.17 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 271 out tokens, $0.0066, 3.6 s):
+  │   {
+  │     "observations": "An elongated brown oval object lying diagonally on green grass, running from lower left to upper right. The rounded upper-right end is a closed, slightly stitched-looking brown panel. The lower-left end is an open hollow with a darker brown rim and a tan or cream interior, with a small light lace-like detail near the opening. Pixel art-like blur, smooth leather-like texture.",
+  │     "object_type": "brown leather slip-on shoe, seen from above",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "cream"
+  │     ],
+  │     "distinctive_features": [
+  │       "open foot-hole with cream interior",
+  │       "small light lace or tongue detail near the opening",
+  │       "rounded closed toe panel with stitching-like line"
+  │     ],
+  │     "estimated_size_cm": null,
+  │     "wearer_size": "unknown",
+  │     "confidence": "medium",
+  │     "needs_closer_look": true
+  │   }
+  └─
+
+  >> CLOSER LOOK (describe could not tell): zoomed view of e04
+
+  ┌─ call 2: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 70 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/e04/02-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, ZOOMED closer-look view (6x).
+  │   Ground scale: 0.18 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1969 in / 283 out tokens, $0.0068, 2.7 s):
+  │   {
+  │     "observations": "An elongated, rounded shoe shape seen from above, lying diagonally on green grass. The body is medium brown with a dark brown outline and a lighter brown rounded toe/heel section at the upper right with a thin tan stitched line. At the lower left is an oval opening with a tan insole inside, and cream laces criss-cross over a tongue near the opening. Stylised, smooth flat-coloured appearance.",
+  │     "object_type": "brown lace-up shoe with cream laces",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "dark brown",
+  │       "cream",
+  │       "tan"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream criss-cross laces",
+  │       "tan insole visible in oval opening",
+  │       "dark brown outline",
+  │       "thin tan stitched line on the rounded end"
+  │     ],
+  │     "estimated_size_cm": 30.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 3: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Ethan, age 8
+  │   Summary: 8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.
+  │   Clothing:
+  │     - navy-blue baseball cap with a grey front panel, worn backwards
+  │     - green short-sleeved t-shirt
+  │     - blue denim shorts
+  │     - black rubber wristband on his left wrist
+  │     - white sneakers
+  │   Belongings:
+  │     - small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back
+  │   Other details:
+  │     - Brown hair, freckles
+  │     - Curious and restless; likely to wander toward open grass or anything interesting rather than stay put
+  │   Last seen: 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on
+  │   Conditions: Sunny, 21 C, light wind. Game day: crowds, tailgate gear and litter on the grass north of the stadium.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "An elongated, rounded shoe shape seen from above, lying diagonally on green grass. The body is medium brown with a dark brown outline and a lighter brown rounded toe/heel section at the upper right with a thin tan stitched line. At the lower left is an oval opening with a tan insole inside, and cream laces criss-cross over a tongue near the opening. Stylised, smooth flat-coloured appearance.",
+  │     "object_type": "brown lace-up shoe with cream laces",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "dark brown",
+  │       "cream",
+  │       "tan"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream criss-cross laces",
+  │       "tan insole visible in oval opening",
+  │       "dark brown outline",
+  │       "thin tan stitched line on the rounded end"
+  │     ],
+  │     "estimated_size_cm": 30.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2437 in / 206 out tokens, $0.0069, 2.8 s):
+  │   {
+  │     "possible_items": [
+  │       "white sneakers"
+  │     ],
+  │     "candidate_item": "white sneakers",
+  │     "matches": [
+  │       "footwear of a lace-up shoe type"
+  │     ],
+  │     "mismatches": [
+  │       "main colour is brown, not white",
+  │       "estimated length about 30 cm and described as adult size, while Ethan is an 8-year-old child",
+  │       "brown leather-style lace-up shoe with cream laces, not a white sneaker"
+  │     ],
+  │     "rationale": "The only listed footwear is white sneakers, but this is a brown adult-sized lace-up shoe, so the colour and size are both hard mismatches. It is most likely someone else's dropped shoe.",
+  │     "relevance": "low"
+  │   }
+  └─
+
+  ┌─ call 4: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Ethan; last seen 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on.
+  │   Object: brown lace-up shoe with cream laces (describe confidence high).
+  │   Distance from the last known point: 59 m (computed by the planner).
+  │   A closer look HAS ALREADY BEEN TAKEN: inspect_closer is not available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "white sneakers"
+  │     ],
+  │     "candidate_item": "white sneakers",
+  │     "matches": [
+  │       "footwear of a lace-up shoe type"
+  │     ],
+  │     "mismatches": [
+  │       "main colour is brown, not white",
+  │       "estimated length about 30 cm and described as adult size, while Ethan is an 8-year-old child",
+  │       "brown leather-style lace-up shoe with cream laces, not a white sneaker"
+  │     ],
+  │     "rationale": "The only listed footwear is white sneakers, but this is a brown adult-sized lace-up shoe, so the colour and size are both hard mismatches. It is most likely someone else's dropped shoe.",
+  │     "relevance": "low"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1476 in / 103 out tokens, $0.0040, 2.0 s):
+  │   {
+  │     "rationale": "Relevance is low: the shoe is brown and adult-sized, while Ethan is an 8-year-old child whose listed footwear is white sneakers. Policy for low relevance is to record it and continue the search unchanged.",
+  │     "action": "log_only",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT e04 run 1: 'brown lace-up shoe with cream laces' -> relevance low, action log_only  ($0.0243, 4 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- Adult man's shoe; Ethan wears white child's sneakers.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE e05  run 1/1   image doll-pink-dress.png
+  STAGE 1 (detect, offline oracle): candidate e05 at (41.699050, -86.236500), label 'unknown', crop 0.003 m/px at 20.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 41 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/e05/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.25 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 270 out tokens, $0.0066, 3.0 s):
+  │   {
+  │     "observations": "A small doll figure lying flat on dark green grass, seen from above. It has yellow-blonde hair in two pigtails on either side of the head, a pale skin-tone face with blue eyes, arms held out to the sides, and a pink sleeveless dress with a white collar. Bare legs extend downward ending in small white shoes. The image looks smooth and cartoon-like rather than photographic.",
+  │     "object_type": "doll with blonde pigtails and pink dress",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "yellow",
+  │       "white",
+  │       "beige"
+  │     ],
+  │     "distinctive_features": [
+  │       "blonde pigtails",
+  │       "pink sleeveless dress",
+  │       "white collar",
+  │       "white shoes",
+  │       "arms outstretched"
+  │     ],
+  │     "estimated_size_cm": 19.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "medium",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Ethan, age 8
+  │   Summary: 8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.
+  │   Clothing:
+  │     - navy-blue baseball cap with a grey front panel, worn backwards
+  │     - green short-sleeved t-shirt
+  │     - blue denim shorts
+  │     - black rubber wristband on his left wrist
+  │     - white sneakers
+  │   Belongings:
+  │     - small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back
+  │   Other details:
+  │     - Brown hair, freckles
+  │     - Curious and restless; likely to wander toward open grass or anything interesting rather than stay put
+  │   Last seen: 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on
+  │   Conditions: Sunny, 21 C, light wind. Game day: crowds, tailgate gear and litter on the grass north of the stadium.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A small doll figure lying flat on dark green grass, seen from above. It has yellow-blonde hair in two pigtails on either side of the head, a pale skin-tone face with blue eyes, arms held out to the sides, and a pink sleeveless dress with a white collar. Bare legs extend downward ending in small white shoes. The image looks smooth and cartoon-like rather than photographic.",
+  │     "object_type": "doll with blonde pigtails and pink dress",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "yellow",
+  │       "white",
+  │       "beige"
+  │     ],
+  │     "distinctive_features": [
+  │       "blonde pigtails",
+  │       "pink sleeveless dress",
+  │       "white collar",
+  │       "white shoes",
+  │       "arms outstretched"
+  │     ],
+  │     "estimated_size_cm": 19.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "medium",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2425 in / 176 out tokens, $0.0066, 2.5 s):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "doll is a toy, not any listed clothing item or belonging",
+  │       "pink dress and blonde pigtails do not correspond to any listed colour or item",
+  │       "white shoes are on a doll, not child's white sneakers"
+  │     ],
+  │     "rationale": "The object is a doll in a pink dress, and none of Ethan's listed clothing or his orange dinosaur backpack is a doll or resembles one. It is likely someone else's dropped toy.",
+  │     "relevance": "none"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Ethan; last seen 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on.
+  │   Object: doll with blonde pigtails and pink dress (describe confidence medium).
+  │   Distance from the last known point: 141 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "doll is a toy, not any listed clothing item or belonging",
+  │       "pink dress and blonde pigtails do not correspond to any listed colour or item",
+  │       "white shoes are on a doll, not child's white sneakers"
+  │     ],
+  │     "rationale": "The object is a doll in a pink dress, and none of Ethan's listed clothing or his orange dinosaur backpack is a doll or resembles one. It is likely someone else's dropped toy.",
+  │     "relevance": "none"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1423 in / 98 out tokens, $0.0038, 1.7 s):
+  │   {
+  │     "rationale": "Stage 3 rated relevance 'none': a doll in a pink dress matches none of Ethan's clothing or his backpack, so it is likely someone else's dropped toy and policy says to ignore it.",
+  │     "action": "ignore",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT e05 run 1: 'doll with blonde pigtails and pink dress' -> relevance none, action ignore  ($0.0171, 3 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- A child's toy, but nothing he carried; a child was here is not Ethan was here.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE e06  run 1/1   image soccer-ball.png
+  STAGE 1 (detect, offline oracle): candidate e06 at (41.699480, -86.237200), label 'unknown', crop 0.001 m/px at 20.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 39 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-032150/e06/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.14 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 229 out tokens, $0.0062, 3.0 s):
+  │   {
+  │     "observations": "A round object on green grass, with a white or light grey body and a thin dark outline. A black pentagon sits at the centre, and more black pentagonal patches are spaced around the edge, each linked to the centre by faint grey seams. It looks like a classic football panel pattern with a smooth, slightly glossy surface.",
+  │     "object_type": "black and white soccer ball",
+  │     "category": "sports_equipment",
+  │     "colors": [
+  │       "white",
+  │       "black",
+  │       "light grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "black pentagon panels",
+  │       "white hexagon-style panels with grey seams",
+  │       "thin dark outline"
+  │     ],
+  │     "estimated_size_cm": 23.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Ethan, age 8
+  │   Summary: 8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.
+  │   Clothing:
+  │     - navy-blue baseball cap with a grey front panel, worn backwards
+  │     - green short-sleeved t-shirt
+  │     - blue denim shorts
+  │     - black rubber wristband on his left wrist
+  │     - white sneakers
+  │   Belongings:
+  │     - small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back
+  │   Other details:
+  │     - Brown hair, freckles
+  │     - Curious and restless; likely to wander toward open grass or anything interesting rather than stay put
+  │   Last seen: 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on
+  │   Conditions: Sunny, 21 C, light wind. Game day: crowds, tailgate gear and litter on the grass north of the stadium.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A round object on green grass, with a white or light grey body and a thin dark outline. A black pentagon sits at the centre, and more black pentagonal patches are spaced around the edge, each linked to the centre by faint grey seams. It looks like a classic football panel pattern with a smooth, slightly glossy surface.",
+  │     "object_type": "black and white soccer ball",
+  │     "category": "sports_equipment",
+  │     "colors": [
+  │       "white",
+  │       "black",
+  │       "light grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "black pentagon panels",
+  │       "white hexagon-style panels with grey seams",
+  │       "thin dark outline"
+  │     ],
+  │     "estimated_size_cm": 23.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2377 in / 208 out tokens, $0.0068, 4.0 s):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "A soccer ball is not any listed clothing item or belonging",
+  │       "Not a cap, t-shirt, shorts, wristband, sneakers or backpack",
+  │       "Black/white colours do not fit the orange backpack or the other listed items, and the outline is a ball, not an item of clothing"
+  │     ],
+  │     "rationale": "The object is a clearly identified soccer ball, and Ethan's description lists no ball. Game-day litter and gear on the grass make it far more likely to belong to someone else, though a boy his age might plausibly carry one.",
+  │     "relevance": "low"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Ethan; last seen 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on.
+  │   Object: black and white soccer ball (describe confidence high).
+  │   Distance from the last known point: 80 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "A soccer ball is not any listed clothing item or belonging",
+  │       "Not a cap, t-shirt, shorts, wristband, sneakers or backpack",
+  │       "Black/white colours do not fit the orange backpack or the other listed items, and the outline is a ball, not an item of clothing"
+  │     ],
+  │     "rationale": "The object is a clearly identified soccer ball, and Ethan's description lists no ball. Game-day litter and gear on the grass make it far more likely to belong to someone else, though a boy his age might plausibly carry one.",
+  │     "relevance": "low"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1447 in / 85 out tokens, $0.0037, 1.8 s):
+  │   {
+  │     "rationale": "Stage 3 rated the soccer ball as low relevance because Ethan's description lists no ball and it matches none of his items, so policy says to log it without changing the search.",
+  │     "action": "log_only",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT e06 run 1: 'black and white soccer ball' -> relevance low, action log_only  ($0.0168, 3 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- Common game-day object; nothing in his description mentions a ball.
+  VERDICT: relevance OK, action OK
+
+clue  truth  object (last run)                relevance          action                       rel ok  act ok 
+-------------------------------------------------------------------------------------------------------------
+e01   REL    blue baseball cap with grey fro  high               converge_search              1/1     1/1    
+e02   REL    orange child's backpack with wh  high               converge_search              1/1     1/1    
+e03   -      blue knitted beanie with pompom  low                log_only                     1/1     1/1    
+e04   -      brown lace-up shoe with cream l  low                log_only                     1/1     1/1    
+e05   -      doll with blonde pigtails and p  none               ignore                       1/1     1/1    
+e06   -      black and white soccer ball      low                log_only                     1/1     1/1    
+
+Relevance accuracy 6/6 (100%), action accuracy 6/6 (100%)
+Cost $0.118, 57 s. Log: /home/yitong/uav-native-ai/hw07/clues/data/eval_runs.jsonl

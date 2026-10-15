@@ -1,0 +1,6 @@
+[gui] scene 'lost-boy-north-gate' shown (7 objects)
+[gui] window up
+MQTT connected with rc = 0
+Subscribed to topic: update_drone
+[gui] camera Fuchsia: STREAMING
+[gui] first camera frame from Fuchsia published

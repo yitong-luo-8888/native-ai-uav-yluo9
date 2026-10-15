@@ -1,0 +1,6 @@
+{"lat": 41.69905, "lon": -86.2365, "cv_label": "unknown", "cv_confidence": 1.0, "ground_m_per_px": 0.001548592239244657, "source_uav": "1", "candidate_id": "0b9b0745", "timestamp": 1792045022.9334688, "zoomed": false}
+{"lat": 41.69915, "lon": -86.23745, "cv_label": "unknown", "cv_confidence": 1.0, "ground_m_per_px": 0.0011836257818255902, "source_uav": "1", "candidate_id": "2b99c35c", "timestamp": 1792045045.5294986, "zoomed": false}
+{"lat": 41.69948, "lon": -86.2372, "cv_label": "unknown", "cv_confidence": 1.0, "ground_m_per_px": 0.0012740365819296532, "source_uav": "1", "candidate_id": "94ccc25e", "timestamp": 1792045064.3565192, "zoomed": false}
+{"lat": 41.69937, "lon": -86.2369, "cv_label": "unknown", "cv_confidence": 1.0, "ground_m_per_px": 0.001547818330079618, "source_uav": "1", "candidate_id": "a2eaaf18", "timestamp": 1792045066.6454544, "zoomed": false}
+{"lat": 41.6996, "lon": -86.2366, "cv_label": "unknown", "cv_confidence": 1.0, "ground_m_per_px": 0.001547044420914579, "source_uav": "1", "candidate_id": "7a65ee3e", "timestamp": 1792045084.0916483, "zoomed": false}
+{"lat": 41.69968, "lon": -86.2376, "cv_label": "unknown", "cv_confidence": 1.0, "ground_m_per_px": 0.001729914604206632, "source_uav": "1", "candidate_id": "d30adb81", "timestamp": 1792045099.8513303, "zoomed": false}

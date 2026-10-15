@@ -1,0 +1,158 @@
+
+====================================================================================================
+FLIGHT CANDIDATE 2b99c35c -> clue e01 (navy-cap-grey-front.png)
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 22 KB image/png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.12 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 249 out tokens, $0.0064, 4.7 s):
+  │   {
+  │     "observations": "A blurry, roughly rectangular blue object with rounded corners sits on dark green grass. The upper and lower portions are deep royal blue with faint darker horizontal banding, and the centre has a pale grey-white oval or ellipse. Edges are soft and fine detail cannot be resolved, so the material and any text on the oval are unreadable.",
+  │     "object_type": "blue rectangular item with a white oval patch in the centre",
+  │     "category": "unknown",
+  │     "colors": [
+  │       "blue",
+  │       "white",
+  │       "grey",
+  │       "dark green"
+  │     ],
+  │     "distinctive_features": [
+  │       "pale grey-white oval in the centre",
+  │       "faint darker horizontal banding on the blue area"
+  │     ],
+  │     "estimated_size_cm": 19.0,
+  │     "wearer_size": "unknown",
+  │     "confidence": "low",
+  │     "needs_closer_look": true
+  │   }
+  └─
+  >> CLOSER LOOK (describe could not tell): zoomed view of 2b99c35c
+
+  ┌─ call 2: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 65 KB image/png
+  │ TEXT:
+  │   Top-down drone camera crop, ZOOMED closer-look view (6x).
+  │   Ground scale: 0.15 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1969 in / 255 out tokens, $0.0065, 3.0 s):
+  │   {
+  │     "observations": "Seen from above, a round cap crown made of six panels with seams radiating from a small central button. Four panels are dark blue and the two lower panels are light grey. A dark blue curved brim extends below the crown, with a dark outline around the whole object. Small eyelet dots are visible on the blue panels. It lies flat on green grass.",
+  │     "object_type": "blue baseball cap with two light grey front panels",
+  │     "category": "headwear",
+  │     "colors": [
+  │       "navy blue",
+  │       "light grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "six-panel crown with radiating seams",
+  │       "top button at centre",
+  │       "two light grey front panels",
+  │       "small eyelets on blue panels",
+  │       "curved dark blue brim"
+  │     ],
+  │     "estimated_size_cm": 20.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 3: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Ethan, age 8
+  │   Summary: 8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.
+  │   Clothing:
+  │     - navy-blue baseball cap with a grey front panel, worn backwards
+  │     - green short-sleeved t-shirt
+  │     - blue denim shorts
+  │     - black rubber wristband on his left wrist
+  │     - white sneakers
+  │   Belongings:
+  │     - small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back
+  │   Other details:
+  │     - Brown hair, freckles
+  │     - Curious and restless; likely to wander toward open grass or anything interesting rather than stay put
+  │   Last seen: 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on
+  │   Conditions: Sunny, 21 C, light wind. Game day: crowds, tailgate gear and litter on the grass north of the stadium.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "Seen from above, a round cap crown made of six panels with seams radiating from a small central button. Four panels are dark blue and the two lower panels are light grey. A dark blue curved brim extends below the crown, with a dark outline around the whole object. Small eyelet dots are visible on the blue panels. It lies flat on green grass.",
+  │     "object_type": "blue baseball cap with two light grey front panels",
+  │     "category": "headwear",
+  │     "colors": [
+  │       "navy blue",
+  │       "light grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "six-panel crown with radiating seams",
+  │       "top button at centre",
+  │       "two light grey front panels",
+  │       "small eyelets on blue panels",
+  │       "curved dark blue brim"
+  │     ],
+  │     "estimated_size_cm": 20.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2307 in / 226 out tokens, $0.0069, 3.9 s):
+  │   {
+  │     "possible_items": [
+  │       "navy-blue baseball cap with a grey front panel, worn backwards"
+  │     ],
+  │     "candidate_item": "navy-blue baseball cap with a grey front panel, worn backwards",
+  │     "matches": [
+  │       "baseball cap, same kind of object",
+  │       "navy/dark blue main colour",
+  │       "light grey front panels match grey front panel",
+  │       "child-sized, about 20 cm"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized navy baseball cap with grey front panels, matching Ethan's listed cap in kind, main colour and distinctive grey front, with nothing contradicting it. The cap lying on open grass also fits his tendency to wander toward grass.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 4: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Ethan; last seen 45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on.
+  │   Object: blue baseball cap with two light grey front panels (describe confidence high).
+  │   Distance from the last known point: 62 m (computed by the planner).
+  │   A closer look HAS ALREADY BEEN TAKEN: inspect_closer is not available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "navy-blue baseball cap with a grey front panel, worn backwards"
+  │     ],
+  │     "candidate_item": "navy-blue baseball cap with a grey front panel, worn backwards",
+  │     "matches": [
+  │       "baseball cap, same kind of object",
+  │       "navy/dark blue main colour",
+  │       "light grey front panels match grey front panel",
+  │       "child-sized, about 20 cm"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized navy baseball cap with grey front panels, matching Ethan's listed cap in kind, main colour and distinctive grey front, with nothing contradicting it. The cap lying on open grass also fits his tendency to wander toward grass.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1494 in / 124 out tokens, $0.0042, 1.9 s):
+  │   {
+  │     "rationale": "Relevance is high: a child-sized navy cap with grey front panels matches Ethan's cap with no mismatches, so policy calls for converge_search. It was found 62 m from the last known point and he has been moving for 45 minutes, so a moderately wide radius is warranted.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 90.0,
+  │     "priority": "high"
+  │   }
+  └─
+  >> SEARCH CENTRE set by code to the candidate's position (41.699150, -86.237450), radius 90 m
+
+cand      clue  object                                   relevance action           rel/act ok
+2b99c35c  e01   blue baseball cap with two light grey f  high      converge_search  True/True
+Cost $0.024

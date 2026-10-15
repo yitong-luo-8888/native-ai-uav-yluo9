@@ -1,0 +1,61 @@
+03:20:12 clue-detector: Watching VIDEO_STREAM/+/frame for clues
+03:20:50 clue-detector: CANDIDATE b4acb362 'unknown' (1.00) at (41.699050, -86.236500) from Fuchsia
+03:20:54 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:20:59 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:21:01 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:21:01 clue-detector: ASSESSED b4acb362: 'small doll with blonde hair and pink dress' relevance none -> ignore ($0.0167)
+03:21:12 clue-detector: CANDIDATE b4684a15 'unknown' (1.00) at (41.699150, -86.237450) from Fuchsia
+03:21:16 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:21:18 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:21:20 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:21:20 clue-detector: ASSESSED b4684a15: 'blue object with pale oval centre, unidentified' relevance medium -> inspect_closer ($0.0178)
+03:21:42 clue-detector: CANDIDATE 7f3960e6 'unknown' (1.00) at (41.699150, -86.237450) from Fuchsia
+03:21:46 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:21:50 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:21:53 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:21:53 clue-detector: ASSESSED 7f3960e6: 'blue rounded object with pale grey-white patch' relevance medium -> inspect_closer ($0.0174)
+03:22:12 clue-detector: CANDIDATE b9958ab7 'unknown' (1.00) at (41.699150, -86.237450) from Fuchsia
+03:22:15 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:22:19 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:22:21 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:22:21 clue-detector: ASSESSED b9958ab7: 'blue round object with pale grey-white patch (unclear)' relevance medium -> inspect_closer ($0.0180)
+03:22:45 clue-detector: CANDIDATE 99278030 'unknown' (1.00) at (41.699480, -86.237200) from Fuchsia
+03:22:47 clue-detector: CANDIDATE 8655558d 'unknown' (1.00) at (41.699370, -86.236900) from Fuchsia
+03:22:48 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:22:51 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:22:53 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:22:53 clue-detector: ASSESSED 99278030: 'white five-lobed flower-like object' relevance low -> log_only ($0.0166)
+03:22:56 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:22:59 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:01 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:01 clue-detector: ASSESSED 8655558d: 'dark blue knit beanie or hat' relevance low -> log_only ($0.0182)
+03:23:04 clue-detector: CANDIDATE 6fa21c66 'unknown' (1.00) at (41.699600, -86.236600) from Fuchsia
+03:23:08 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:11 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:12 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:12 clue-detector: ASSESSED 6fa21c66: 'orange item with a small green and white oval emblem' relevance medium -> inspect_closer ($0.0185)
+03:23:21 clue-detector: CANDIDATE 79c80174 'unknown' (1.00) at (41.699480, -86.237200) from Fuchsia
+03:23:25 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:28 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:29 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:29 clue-detector: ASSESSED 79c80174: 'small white five-petal flower-shaped object' relevance low -> log_only ($0.0172)
+03:23:34 clue-detector: CANDIDATE 2bed2671 'unknown' (1.00) at (41.699600, -86.236600) from Fuchsia
+03:23:38 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:40 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:42 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:23:42 clue-detector: ASSESSED 2bed2671: 'orange item with small green oval mark, possibly a small bag or packet' relevance medium -> inspect_closer ($0.0174)
+03:24:05 clue-detector: CANDIDATE 8bf77a84 'unknown' (1.00) at (41.699600, -86.236600) from Fuchsia
+03:24:08 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:11 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:13 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:13 clue-detector: ASSESSED 8bf77a84: 'orange folded item with a small green and cream emblem' relevance medium -> inspect_closer ($0.0188)
+03:24:37 clue-detector: CANDIDATE 8bf43495 'unknown' (1.00) at (41.699480, -86.237200) from Fuchsia
+03:24:40 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:43 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:45 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:45 clue-detector: ASSESSED 8bf43495: 'small crumpled white or light grey item, unidentified' relevance low -> log_only ($0.0173)
+03:24:47 clue-detector: CANDIDATE fc7087a4 'unknown' (1.00) at (41.699680, -86.237600) from Fuchsia
+03:24:50 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:53 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:55 httpx2: HTTP Request: POST https://api.anthropic.com/v1/messages?beta=true "HTTP/1.1 200 OK"
+03:24:55 clue-detector: ASSESSED fc7087a4: 'unidentified orange-brown elongated object' relevance low -> log_only ($0.0175)

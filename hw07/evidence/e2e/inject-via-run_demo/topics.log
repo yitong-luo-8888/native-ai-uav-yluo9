@@ -1,0 +1,27 @@
+02:03:21 uav/1/telemetry lat=41.6988445 lon=-86.2370549 alt_rel=-0.003 activity=idle battery_level=1.0
+02:03:27 uav/1/telemetry lat=41.6988446 lon=-86.237055 alt_rel=0.709 activity=taking_off battery_level=0.99
+02:03:32 uav/1/telemetry lat=41.6988447 lon=-86.2370552 alt_rel=12.257 activity=taking_off battery_level=0.98
+02:03:35 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 1 of 10"}
+02:03:37 uav/1/telemetry lat=41.6988529 lon=-86.2370888 alt_rel=19.627 activity=flying battery_level=0.97
+02:03:38 mission/clues {"assessment_id": "065b8349", "candidate": "e35b470c", "object": "navy baseball cap with grey front", "relevance": "high", "decision": {"action": "converge_search", "search_radius_m": 80.0, "priority": "high", "rationale": "Injected."}, "search_center": {"lat": 41.69915, "lon": -86.23745}}
+02:03:38 mission/action_result {"request_id": "clue-065b8349", "approved": true, "action_id": "708298ba", "type": "circle_stream", "uav": "1", "reasons": [], "notes": ["Circle radius 80 m clamped to 40 m (allowed 10-40 m)."], "decided_by": "ai", "assessment_id": "065b8349", "proposal": "converge_search", "object": "navy baseball cap with grey front"}
+02:03:38 mission/behavior_status {"uav": "1", "action_id": "708298ba", "behavior": "circle_stream", "state": "PENDING", "detail": "circle_stream approved; will resume at waypoint 1 of 10"}
+02:03:38 mission/behavior_status {"uav": "1", "action_id": "708298ba", "behavior": "circle_stream", "state": "RUNNING", "detail": "circle_stream: leaving route at waypoint 1 of 10", "stream_required": true}
+02:03:38 mission/behavior_status {"uav": "1", "action_id": "708298ba", "behavior": "circle_stream", "state": "RUNNING", "detail": "flying to circle start (40 m north of target)", "stream_required": true}
+02:03:42 uav/1/telemetry lat=41.6990471 lon=-86.2374654 alt_rel=19.873 activity=flying battery_level=0.95
+02:03:47 uav/1/telemetry lat=41.6994186 lon=-86.2374627 alt_rel=19.999 activity=flying battery_level=0.94
+02:03:49 mission/behavior_status {"uav": "1", "action_id": "708298ba", "behavior": "circle_stream", "state": "RUNNING", "detail": "circling at 40 m for 60 s", "stream_required": true}
+02:03:52 uav/1/telemetry lat=41.6995118 lon=-86.2373953 alt_rel=20.013 activity=circling battery_level=0.93
+02:03:57 uav/1/telemetry lat=41.6994688 lon=-86.2372267 alt_rel=20.0 activity=circling battery_level=0.92
+02:04:02 uav/1/telemetry lat=41.6993851 lon=-86.2370858 alt_rel=19.999 activity=circling battery_level=0.9
+02:04:07 uav/1/telemetry lat=41.6992613 lon=-86.2369919 alt_rel=20.0 activity=circling battery_level=0.89
+02:04:12 uav/1/telemetry lat=41.6991269 lon=-86.2369692 alt_rel=20.0 activity=circling battery_level=0.88
+02:04:18 uav/1/telemetry lat=41.6989968 lon=-86.2370142 alt_rel=20.0 activity=circling battery_level=0.87
+02:04:23 uav/1/telemetry lat=41.6988937 lon=-86.2371119 alt_rel=20.0 activity=circling battery_level=0.86
+02:04:28 uav/1/telemetry lat=41.698816 lon=-86.237272 alt_rel=20.001 activity=circling battery_level=0.84
+02:04:33 uav/1/telemetry lat=41.6987904 lon=-86.2374619 alt_rel=20.001 activity=circling battery_level=0.83
+02:04:38 uav/1/telemetry lat=41.698819 lon=-86.2376382 alt_rel=20.0 activity=circling battery_level=0.82
+02:04:43 uav/1/telemetry lat=41.6988973 lon=-86.2377927 alt_rel=20.002 activity=circling battery_level=0.81
+02:04:48 uav/1/telemetry lat=41.6990107 lon=-86.2378939 alt_rel=20.001 activity=circling battery_level=0.8
+02:04:49 mission/behavior_status {"uav": "1", "action_id": "708298ba", "behavior": "circle_stream", "state": "COMPLETED", "detail": "circle_stream complete; resuming at waypoint 1 of 10"}
+02:04:49 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 1 of 10"}

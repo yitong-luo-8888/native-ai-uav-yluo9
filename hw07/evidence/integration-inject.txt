@@ -1,0 +1,90 @@
+# HW7 R7 integration run 1: inject_clue.py -> mission/clues -> HW6 planner ClueHookup -> validator -> executor (SITL)
+# Thu Oct 15 02:01:12 EDT 2026
+
+## inject_clue.py output
+sent 0c85c025: navy baseball cap with grey front at 41.699150, -86.237450 -> converge_search
+sent 09f901e8: navy knit hat? at 41.699370, -86.236900 -> inspect_closer
+sent b699e8a2: soccer ball at 41.699480, -86.237200 -> log_only
+sent fd252368: orange backpack, dinosaur patch at 41.699600, -86.236600 -> converge_search
+sent 40fd8d51: navy cap at 41.699150, -86.237450 -> converge_search
+
+## planner log (python -m planner.main, hw06/)
+01:55:05 planner: Planner up: UAVs 1, deliver threshold 0.35, decision timeout 180s
+01:55:06 planner.executor: UAV 1 taking off to 20 m
+01:57:13 planner.clues: Approved AI circle_stream on UAV 1 for clue 0c85c025 (navy baseball cap with grey front) as 5c3e0d9f -- Circle radius 80 m clamped to 40 m (allowed 10-40 m).
+01:58:55 planner.clues: Approved AI hover_stream on UAV 1 for clue 09f901e8 (navy knit hat?) as 78a5e24d
+01:59:02 planner.clues: AI clue b699e8a2: soccer ball -> log_only; no flight (low)
+02:00:14 planner.clues: Rejected AI circle_stream (converge_search) for clue fd252368: UAV 1 battery 26% is below the 25% reserve plus 8% circle_stream cost (33% needed).
+02:00:16 planner.clues: Rejected AI circle_stream (converge_search) for clue 40fd8d51: UAV 1 battery 26% is below the 25% reserve plus 8% circle_stream cost (33% needed).
+
+## MQTT: mission/# and uav/1/telemetry (every 5 s)
+01:56:59 uav/1/telemetry lat=41.6995747 lon=-86.2377881 alt_rel=19.991 activity=flying battery_level=0.73
+01:57:03 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 10 of 10"}
+01:57:04 uav/1/telemetry lat=41.6997451 lon=-86.2377762 alt_rel=19.99 activity=flying battery_level=0.71
+01:57:09 uav/1/telemetry lat=41.6997481 lon=-86.2373703 alt_rel=19.993 activity=flying battery_level=0.7
+01:57:13 mission/clues {"assessment_id": "0c85c025", "decision": {"action": "converge_search", "search_radius_m": 80.0, "priority": "high", "rationale": "Injected."}, "search_center": {"lat": 41.69915, "lon": -86.23745}}
+01:57:13 mission/action_result {"request_id": "clue-0c85c025", "approved": true, "action_id": "5c3e0d9f", "type": "circle_stream", "uav": "1", "reasons": [], "notes": ["Circle radius 80 m clamped to 40 m (allowed 10-40 m)."], "decided_by": "ai", "assessment_id": "0c85c025", "proposal": "converge_search", "object": "navy baseball cap with grey front"}
+01:57:13 mission/behavior_status {"uav": "1", "action_id": "5c3e0d9f", "behavior": "circle_stream", "state": "PENDING", "detail": "circle_stream approved; will resume at waypoint 10 of 10"}
+01:57:13 mission/behavior_status {"uav": "1", "action_id": "5c3e0d9f", "behavior": "circle_stream", "state": "RUNNING", "detail": "circle_stream: leaving route at waypoint 10 of 10", "stream_required": true}
+01:57:13 mission/behavior_status {"uav": "1", "action_id": "5c3e0d9f", "behavior": "circle_stream", "state": "RUNNING", "detail": "flying to circle start (40 m north of target)", "stream_required": true}
+01:57:14 uav/1/telemetry lat=41.6997459 lon=-86.2367737 alt_rel=20.018 activity=flying battery_level=0.69
+01:57:19 uav/1/telemetry lat=41.6997585 lon=-86.2366193 alt_rel=19.988 activity=flying battery_level=0.68
+01:57:25 uav/1/telemetry lat=41.6996147 lon=-86.2370996 alt_rel=20.006 activity=flying battery_level=0.66
+01:57:30 mission/behavior_status {"uav": "1", "action_id": "5c3e0d9f", "behavior": "circle_stream", "state": "RUNNING", "detail": "circling at 40 m for 60 s", "stream_required": true}
+01:57:30 uav/1/telemetry lat=41.6995098 lon=-86.2374489 alt_rel=19.988 activity=circling battery_level=0.65
+01:57:35 uav/1/telemetry lat=41.6994956 lon=-86.2373237 alt_rel=19.991 activity=circling battery_level=0.64
+01:57:40 uav/1/telemetry lat=41.6994368 lon=-86.2371607 alt_rel=19.994 activity=circling battery_level=0.63
+01:57:45 uav/1/telemetry lat=41.6993391 lon=-86.237041 alt_rel=19.995 activity=circling battery_level=0.61
+01:57:50 uav/1/telemetry lat=41.6992091 lon=-86.2369757 alt_rel=19.998 activity=circling battery_level=0.6
+01:57:55 uav/1/telemetry lat=41.6990659 lon=-86.2369819 alt_rel=19.998 activity=circling battery_level=0.59
+01:58:00 uav/1/telemetry lat=41.6989417 lon=-86.237058 alt_rel=19.998 activity=circling battery_level=0.58
+01:58:06 uav/1/telemetry lat=41.6988482 lon=-86.2371888 alt_rel=19.998 activity=circling battery_level=0.57
+01:58:11 uav/1/telemetry lat=41.6987965 lon=-86.2373647 alt_rel=19.998 activity=circling battery_level=0.55
+01:58:16 uav/1/telemetry lat=41.6987977 lon=-86.2375448 alt_rel=19.998 activity=circling battery_level=0.54
+01:58:21 uav/1/telemetry lat=41.698848 lon=-86.2377105 alt_rel=19.998 activity=circling battery_level=0.53
+01:58:26 uav/1/telemetry lat=41.6989462 lon=-86.2378461 alt_rel=19.998 activity=circling battery_level=0.52
+01:58:30 mission/behavior_status {"uav": "1", "action_id": "5c3e0d9f", "behavior": "circle_stream", "state": "COMPLETED", "detail": "circle_stream complete; resuming at waypoint 10 of 10"}
+01:58:30 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 10 of 10"}
+01:58:31 uav/1/telemetry lat=41.6990642 lon=-86.2379131 alt_rel=19.996 activity=flying battery_level=0.51
+01:58:36 uav/1/telemetry lat=41.6992218 lon=-86.237566 alt_rel=19.997 activity=flying battery_level=0.49
+01:58:41 uav/1/telemetry lat=41.6994427 lon=-86.2370425 alt_rel=20.011 activity=flying battery_level=0.48
+01:58:46 uav/1/telemetry lat=41.699656 lon=-86.2365382 alt_rel=20.013 activity=flying battery_level=0.47
+01:58:50 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 1 of 10"}
+01:58:51 uav/1/telemetry lat=41.699743 lon=-86.2363308 alt_rel=19.995 activity=flying battery_level=0.46
+01:58:55 mission/clues {"assessment_id": "09f901e8", "decision": {"action": "inspect_closer", "search_radius_m": null, "priority": null, "rationale": "Injected."}, "search_center": null}
+01:58:55 mission/action_result {"request_id": "clue-09f901e8", "approved": true, "action_id": "78a5e24d", "type": "hover_stream", "uav": "1", "reasons": [], "notes": [], "decided_by": "ai", "assessment_id": "09f901e8", "proposal": "inspect_closer", "object": "navy knit hat?"}
+01:58:55 mission/behavior_status {"uav": "1", "action_id": "78a5e24d", "behavior": "hover_stream", "state": "PENDING", "detail": "hover_stream approved; will resume at waypoint 1 of 10"}
+01:58:55 mission/behavior_status {"uav": "1", "action_id": "78a5e24d", "behavior": "hover_stream", "state": "RUNNING", "detail": "hover_stream: leaving route at waypoint 1 of 10", "stream_required": true}
+01:58:55 mission/behavior_status {"uav": "1", "action_id": "78a5e24d", "behavior": "hover_stream", "state": "RUNNING", "detail": "flying to 0 m standoff", "stream_required": true}
+01:58:57 uav/1/telemetry lat=41.6995753 lon=-86.2366647 alt_rel=20.0 activity=flying battery_level=0.44
+01:59:01 mission/behavior_status {"uav": "1", "action_id": "78a5e24d", "behavior": "hover_stream", "state": "RUNNING", "detail": "hovering and streaming for 60 s", "stream_required": true}
+01:59:02 uav/1/telemetry lat=41.699376 lon=-86.2368954 alt_rel=19.984 activity=flying battery_level=0.43
+01:59:02 mission/clues {"assessment_id": "b699e8a2", "decision": {"action": "log_only", "search_radius_m": null, "priority": null, "rationale": "Injected."}, "search_center": null}
+01:59:07 uav/1/telemetry lat=41.6993694 lon=-86.2369012 alt_rel=19.988 activity=flying battery_level=0.42
+01:59:12 uav/1/telemetry lat=41.69937 lon=-86.2369003 alt_rel=19.991 activity=flying battery_level=0.41
+01:59:17 uav/1/telemetry lat=41.6993701 lon=-86.2369001 alt_rel=19.992 activity=flying battery_level=0.39
+01:59:22 uav/1/telemetry lat=41.6993702 lon=-86.2369 alt_rel=19.994 activity=flying battery_level=0.38
+01:59:27 uav/1/telemetry lat=41.6993702 lon=-86.2369 alt_rel=19.996 activity=flying battery_level=0.37
+01:59:32 uav/1/telemetry lat=41.6993702 lon=-86.2369 alt_rel=19.998 activity=flying battery_level=0.36
+01:59:37 uav/1/telemetry lat=41.6993702 lon=-86.2369 alt_rel=19.998 activity=flying battery_level=0.35
+01:59:43 uav/1/telemetry lat=41.6993702 lon=-86.2369 alt_rel=19.998 activity=flying battery_level=0.34
+01:59:48 uav/1/telemetry lat=41.6993702 lon=-86.2369 alt_rel=19.998 activity=flying battery_level=0.32
+01:59:53 uav/1/telemetry lat=41.6993702 lon=-86.2369 alt_rel=19.999 activity=flying battery_level=0.31
+01:59:58 uav/1/telemetry lat=41.6993702 lon=-86.2369 alt_rel=19.999 activity=flying battery_level=0.3
+02:00:01 mission/behavior_status {"uav": "1", "action_id": "78a5e24d", "behavior": "hover_stream", "state": "COMPLETED", "detail": "hover_stream complete; resuming at waypoint 1 of 10"}
+02:00:01 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 1 of 10"}
+02:00:03 uav/1/telemetry lat=41.699364 lon=-86.236916 alt_rel=20.0 activity=flying battery_level=0.29
+02:00:09 uav/1/telemetry lat=41.6991963 lon=-86.2373404 alt_rel=20.002 activity=flying battery_level=0.27
+02:00:14 uav/1/telemetry lat=41.6990355 lon=-86.2377478 alt_rel=19.992 activity=flying battery_level=0.26
+02:00:14 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 2 of 10"}
+02:00:14 mission/clues {"assessment_id": "fd252368", "decision": {"action": "converge_search", "search_radius_m": 40.0, "priority": "high", "rationale": "Injected."}, "search_center": {"lat": 41.6996, "lon": -86.2366}}
+02:00:14 mission/action_result {"request_id": "clue-fd252368", "approved": false, "action_id": null, "type": "circle_stream", "uav": "1", "reasons": ["UAV 1 battery 26% is below the 25% reserve plus 8% circle_stream cost (33% needed)."], "notes": [], "decided_by": "ai", "assessment_id": "fd252368", "proposal": "converge_search", "object": "orange backpack, dinosaur patch"}
+02:00:16 mission/clues {"assessment_id": "40fd8d51", "decision": {"action": "converge_search", "search_radius_m": 40.0, "priority": "high", "rationale": "Injected."}, "search_center": {"lat": 41.69915, "lon": -86.23745}}
+02:00:16 mission/action_result {"request_id": "clue-40fd8d51", "approved": false, "action_id": null, "type": "circle_stream", "uav": "1", "reasons": ["UAV 1 battery 26% is below the 25% reserve plus 8% circle_stream cost (33% needed)."], "notes": [], "decided_by": "ai", "assessment_id": "40fd8d51", "proposal": "converge_search", "object": "navy cap"}
+02:00:19 uav/1/telemetry lat=41.6990198 lon=-86.2376085 alt_rel=20.002 activity=flying battery_level=0.25
+02:00:24 uav/1/telemetry lat=41.6990221 lon=-86.2370345 alt_rel=20.003 activity=flying battery_level=0.24
+02:00:29 uav/1/telemetry lat=41.6990238 lon=-86.2364865 alt_rel=19.997 activity=flying battery_level=0.22
+02:00:31 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 3 of 10"}
+02:00:34 uav/1/telemetry lat=41.6990742 lon=-86.2363217 alt_rel=20.006 activity=flying battery_level=0.21
+02:00:37 mission/behavior_status {"uav": "1", "action_id": null, "behavior": "search_route", "state": "RUNNING", "detail": "searching: heading to waypoint 4 of 10"}
+02:00:39 uav/1/telemetry lat=41.6992099 lon=-86.2363577 alt_rel=19.995 activity=flying battery_level=0.2

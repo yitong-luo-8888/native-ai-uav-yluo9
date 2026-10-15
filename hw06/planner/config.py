@@ -66,6 +66,11 @@ class PlannerSettings:
     merge_radius_m: float = 10.0
     # R5: advertised to the popup as timeout_s and enforced by the planner.
     decision_timeout_s: float = 180.0
+    # HW7 R7: the validator clamps every circle_stream radius into this range
+    # (an AI converge_search asks for 30-150 m; the UAV orbits at most 40 m
+    # so the circle stays near the 20 m-altitude search area).
+    min_circle_radius_m: float = 10.0
+    max_circle_radius_m: float = 40.0
     # Executor tuning.
     arrival_tolerance_m: float = 2.5
     altitude_tolerance_m: float = 1.0

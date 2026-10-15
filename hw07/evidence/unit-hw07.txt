@@ -1,0 +1,8 @@
+test_closer_look_happens_at_most_once (test_pipeline.TestPipeline.test_closer_look_happens_at_most_once) ... ok
+test_converge_search_centre_is_the_candidates_position (test_pipeline.TestPipeline.test_converge_search_centre_is_the_candidates_position) ... ok
+test_describe_sends_the_crop_and_none_of_the_missing_persons_details (test_pipeline.TestPipeline.test_describe_sends_the_crop_and_none_of_the_missing_persons_details) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.835s
+
+OK

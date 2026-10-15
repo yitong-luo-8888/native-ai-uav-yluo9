@@ -1,0 +1,3 @@
+02:03:22 planner: Planner up: UAVs 1, deliver threshold 0.35, decision timeout 180s
+02:03:22 planner.executor: UAV 1 taking off to 20 m
+02:03:38 planner.clues: Approved AI circle_stream on UAV 1 for clue 065b8349 (navy baseball cap with grey front) as 708298ba -- Circle radius 80 m clamped to 40 m (allowed 10-40 m).

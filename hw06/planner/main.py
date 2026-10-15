@@ -11,6 +11,8 @@
             rejected -> re-ask: same event, new request_id, previous_rejection
             approved -> Executor.submit   fly it, then resume the route (R7)
     mission/cancel -> Executor.cancel
+    mission/clues  -> ClueHookup.handle (HW7 R7: AI proposals, same validator
+                      and executor, verdicts on mission/action_result)
 
 Every collaborator is injected (bus, UAV clients, clock, decision source,
 runner), so tests build a Planner with fakes and drive it synchronously.
@@ -30,6 +32,7 @@ from typing import Callable
 from . import mqtt_bus
 from .candidates import build_candidates
 from .clock import Clock, SystemClock
+from .clue_hookup import ClueHookup
 from .config import MissionConfig, load_config
 from .decision_source import DISMISS, DecisionRequest, DecisionSource, HumanDecisionSource
 from .executor import Executor
@@ -73,6 +76,7 @@ class Planner:
         bus.subscribe(mqtt_bus.EVENTS, lambda _t, p: self.handle_event(p), qos=1)
         bus.subscribe(mqtt_bus.CANCEL, lambda _t, p: self.handle_cancel(p))
         bus.subscribe(mqtt_bus.ABORT, lambda _t, p: self.handle_abort(p))
+        self.clues = ClueHookup(self)           # HW7: mission/clues proposals from the AI pipeline
 
     # -- lifecycle -----------------------------------------------------------
     def start(self) -> None:

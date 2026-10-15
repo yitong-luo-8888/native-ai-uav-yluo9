@@ -1,0 +1,14 @@
+03:19:53 planner: Planner up: UAVs 1, deliver threshold 0.35, decision timeout 180s
+03:19:53 planner.executor: UAV 1 taking off to 20 m
+03:21:01 planner.clues: AI clue f18c793f: small doll with blonde hair and pink dress -> ignore; no flight (none)
+03:21:20 planner.clues: Approved AI hover_stream on UAV 1 for clue d1412266 (blue object with pale oval centre, unidentified) as 588d2c01
+03:21:53 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 94d5c81c: UAV 1 is already executing hover_stream (action 588d2c01); cancel it first or choose another UAV. A hover_stream within 5 m of this spot was already approved (action 588d2c01); not flying it again.
+03:22:21 planner.clues: Rejected AI hover_stream (inspect_closer) for clue e8a12858: UAV 1 is already executing hover_stream (action 588d2c01); cancel it first or choose another UAV. A hover_stream within 5 m of this spot was already approved (action 588d2c01); not flying it again.
+03:22:53 planner.clues: AI clue 5b258a79: white five-lobed flower-like object -> log_only; no flight (low)
+03:23:01 planner.clues: AI clue b36b6a00: dark blue knit beanie or hat -> log_only; no flight (low)
+03:23:12 planner.clues: Approved AI hover_stream on UAV 1 for clue 4f61f633 (orange item with a small green and white oval emblem) as 152ca37f
+03:23:29 planner.clues: AI clue c12341f6: small white five-petal flower-shaped object -> log_only; no flight (low)
+03:23:42 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 1f1e141a: UAV 1 is already executing hover_stream (action 152ca37f); cancel it first or choose another UAV. A hover_stream within 5 m of this spot was already approved (action 152ca37f); not flying it again.
+03:24:13 planner.clues: Rejected AI hover_stream (inspect_closer) for clue 4ed1e2af: UAV 1 is already executing hover_stream (action 152ca37f); cancel it first or choose another UAV. A hover_stream within 5 m of this spot was already approved (action 152ca37f); not flying it again.
+03:24:45 planner.clues: AI clue 8baacdc9: small crumpled white or light grey item, unidentified -> log_only; no flight (low)
+03:24:55 planner.clues: AI clue a082ab0b: unidentified orange-brown elongated object -> log_only; no flight (low)

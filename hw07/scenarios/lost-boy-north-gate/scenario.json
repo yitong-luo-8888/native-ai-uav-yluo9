@@ -1,0 +1,126 @@
+{
+  "mission": {
+    "mission_id": "lost-boy-north-gate",
+    "person": {
+      "name": "Ethan",
+      "summary": "8-year-old boy, slim, short brown hair; left his family at the stadium's north gate to find the restrooms and didn't come back.",
+      "age": 8,
+      "clothing": [
+        "navy-blue baseball cap with a grey front panel, worn backwards",
+        "green short-sleeved t-shirt",
+        "blue denim shorts",
+        "black rubber wristband on his left wrist",
+        "white sneakers"
+      ],
+      "belongings": [
+        "small orange child's backpack with a green dinosaur patch on the front pocket, worn on his back"
+      ],
+      "other": [
+        "Brown hair, freckles",
+        "Curious and restless; likely to wander toward open grass or anything interesting rather than stay put"
+      ],
+      "reference_image": null
+    },
+    "last_known_point": {
+      "lat": 41.69935,
+      "lon": -86.23815
+    },
+    "last_seen": "45 minutes ago near the stadium's north gate, heading for the restrooms, with his backpack on",
+    "search_area": [
+      {"lat": 41.69885, "lon": -86.2385},
+      {"lat": 41.69885, "lon": -86.2358},
+      {"lat": 41.6999, "lon": -86.2358},
+      {"lat": 41.6999, "lon": -86.2385}
+    ],
+    "conditions": "Sunny, 21 C, light wind. Game day: crowds, tailgate gear and litter on the grass north of the stadium."
+  },
+  "search_agl_m": 20,
+  "scene_scale": 9.0,
+  "target": {
+    "image": "people/boy-greenshirt.png",
+    "lat": 41.69983,
+    "lon": -86.2369,
+    "width_m": 8.0,
+    "note": "Where Ethan actually is, for the person detector. Not a clue."
+  },
+  "clues": [
+    {
+      "id": "e01",
+      "image": "images/navy-cap-grey-front.png",
+      "lat": 41.69915,
+      "lon": -86.23745,
+      "width_m": 8.0,
+      "image_prompt": "Drawn by make_icons.py: child's navy baseball cap with two grey front panels, crown up, bill showing, ~18 cm crown.",
+      "truth": {
+        "relevant": true,
+        "acceptable_actions": ["converge_search"],
+        "rationale": "His cap: navy with a grey front panel, child size; it came off as he went."
+      }
+    },
+    {
+      "id": "e02",
+      "image": "images/orange-dino-backpack.png",
+      "lat": 41.6996,
+      "lon": -86.2366,
+      "width_m": 8.0,
+      "image_prompt": "Drawn by make_icons.py: small orange child's backpack lying face up, front pocket with a green dinosaur patch, ~30 cm.",
+      "truth": {
+        "relevant": true,
+        "acceptable_actions": ["converge_search"],
+        "rationale": "His orange backpack with the green dinosaur patch, which he had on when last seen."
+      }
+    },
+    {
+      "id": "e03",
+      "image": "images/navy-knit-beanie.png",
+      "lat": 41.69937,
+      "lon": -86.2369,
+      "width_m": 8.0,
+      "image_prompt": "Drawn by make_icons.py: adult navy knit beanie with a pompom, lying flat, ~24 cm. Near miss: right colour, wrong kind of hat.",
+      "truth": {
+        "relevant": false,
+        "acceptable_actions": ["ignore", "log_only"],
+        "rationale": "Navy like his cap, but a knit beanie, not a baseball cap with a grey front."
+      }
+    },
+    {
+      "id": "e04",
+      "image": "../../../lab/lesson7/decoys/mans-brown-oxford-shoe.png",
+      "lat": 41.69968,
+      "lon": -86.2376,
+      "width_m": 8.0,
+      "image_prompt": "Shared decoy (lab/lesson7/decoys/make_decoys.py): man's brown leather oxford shoe, ~30 cm.",
+      "truth": {
+        "relevant": false,
+        "acceptable_actions": ["ignore", "log_only"],
+        "rationale": "Adult man's shoe; Ethan wears white child's sneakers."
+      }
+    },
+    {
+      "id": "e05",
+      "image": "../../../lab/lesson7/decoys/doll-pink-dress.png",
+      "lat": 41.69905,
+      "lon": -86.2365,
+      "width_m": 8.0,
+      "image_prompt": "Shared decoy (lab/lesson7/decoys/make_decoys.py): plastic doll, blonde hair, pink dress, ~40 cm.",
+      "truth": {
+        "relevant": false,
+        "acceptable_actions": ["ignore", "log_only"],
+        "rationale": "A child's toy, but nothing he carried; a child was here is not Ethan was here."
+      }
+    },
+    {
+      "id": "e06",
+      "image": "../../../lab/lesson7/decoys/soccer-ball.png",
+      "lat": 41.69948,
+      "lon": -86.2372,
+      "width_m": 8.0,
+      "image_prompt": "Shared decoy (lab/lesson7/decoys/make_decoys.py): black-and-white soccer ball, ~22 cm.",
+      "truth": {
+        "relevant": false,
+        "acceptable_actions": ["ignore", "log_only"],
+        "rationale": "Common game-day object; nothing in his description mentions a ball."
+      }
+    }
+  ]
+}

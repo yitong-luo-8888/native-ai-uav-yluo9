@@ -12,6 +12,11 @@ Checks, in order:
     offered, so the policy is enforced here too, not only in the menu)
   * battery: battery_level >= reserve + response cost (inclusive boundary)
   * the UAV isn't already executing another response
+
+Not a rejection but a correction (HW7): a circle_stream radius outside
+[min_circle_radius_m, max_circle_radius_m] is clamped into it, and the
+verdict's notes say so. An AI converge_search asks for a 30-150 m search
+radius; the UAV flies the clamped orbit.
 """
 from __future__ import annotations
 
@@ -38,6 +43,7 @@ class Verdict:
     approved: bool
     reasons: list[str] = field(default_factory=list)
     action: dict | None = None   # normalised copy of the action (typed parameters)
+    notes: list[str] = field(default_factory=list)   # corrections that didn't reject (radius clamp)
 
 
 def as_float(value: Any) -> float | None:
@@ -79,6 +85,15 @@ class Validator:
             else:
                 params[name] = value
 
+        notes: list[str] = []
+        if rtype == "circle_stream" and isinstance(params.get("radius_m"), float):
+            low, high = self.config.planner.min_circle_radius_m, self.config.planner.max_circle_radius_m
+            clamped = min(max(params["radius_m"], low), high)
+            if clamped != params["radius_m"]:
+                notes.append(f"Circle radius {params['radius_m']:g} m clamped to {clamped:g} m "
+                             f"(allowed {low:g}-{high:g} m).")
+                params["radius_m"] = clamped
+
         with self.world.lock:
             state = self.world.uav(uav)
             payloads = list(state.payloads)
@@ -112,4 +127,4 @@ class Validator:
                            f"cancel it first or choose another UAV.")
 
         normalised = {"type": rtype, "uav": uav, "target": {"lat": lat, "lon": lon}, "parameters": params}
-        return Verdict(not reasons, reasons, normalised)
+        return Verdict(not reasons, reasons, normalised, notes)

@@ -1,0 +1,2061 @@
+MISSION lost-girl-pinafore: looking for Lily -- 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear; search altitude 25.0 m
+  stage images saved under /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/
+
+====================================================================================================
+CLUE lp01  run 1/3   image teddy-bear-red-bow.png
+  STAGE 1 (detect, offline oracle): candidate lp01 at (41.698000, -86.238200), label 'unknown', crop 0.002 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 38 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp01-run1/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.20 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 240 out tokens, $0.0063, 3.7 s):
+  │   {
+  │     "observations": "A seated teddy bear lying on green grass, seen from above. It has a brown plush body with round ears, a lighter tan muzzle, belly patch and foot pads, and a small dark face with eyes and nose. A red bow or ribbon sits at its neck, with a small dark red detail on the belly just below it.",
+  │     "object_type": "brown teddy bear with red bow",
+  │     "category": "toy",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "red"
+  │     ],
+  │     "distinctive_features": [
+  │       "red bow at the neck",
+  │       "lighter tan muzzle and belly patch",
+  │       "tan round foot pads",
+  │       "round ears with tan inner ear"
+  │     ],
+  │     "estimated_size_cm": 24.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A seated teddy bear lying on green grass, seen from above. It has a brown plush body with round ears, a lighter tan muzzle, belly patch and foot pads, and a small dark face with eyes and nose. A red bow or ribbon sits at its neck, with a small dark red detail on the belly just below it.",
+  │     "object_type": "brown teddy bear with red bow",
+  │     "category": "toy",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "red"
+  │     ],
+  │     "distinctive_features": [
+  │       "red bow at the neck",
+  │       "lighter tan muzzle and belly patch",
+  │       "tan round foot pads",
+  │       "round ears with tan inner ear"
+  │     ],
+  │     "estimated_size_cm": 24.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2303 in / 229 out tokens, $0.0069, 2.3 s):
+  │   {
+  │     "possible_items": [
+  │       "brown teddy bear with a red ribbon bow, about 30 cm tall"
+  │     ],
+  │     "candidate_item": "brown teddy bear with a red ribbon bow, about 30 cm tall",
+  │     "matches": [
+  │       "teddy bear (same kind of object)",
+  │       "brown main colour",
+  │       "red bow/ribbon at the neck",
+  │       "size about 24 cm is close to the ~30 cm listed, with the estimate from above being approximate"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a brown teddy bear with a red bow at the neck, matching Lily's teddy bear in kind, colour and distinctive feature. The size is roughly consistent, and nothing contradicts it.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: brown teddy bear with red bow (describe confidence high).
+  │   Distance from the last known point: 115 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "brown teddy bear with a red ribbon bow, about 30 cm tall"
+  │     ],
+  │     "candidate_item": "brown teddy bear with a red ribbon bow, about 30 cm tall",
+  │     "matches": [
+  │       "teddy bear (same kind of object)",
+  │       "brown main colour",
+  │       "red bow/ribbon at the neck",
+  │       "size about 24 cm is close to the ~30 cm listed, with the estimate from above being approximate"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a brown teddy bear with a red bow at the neck, matching Lily's teddy bear in kind, colour and distinctive feature. The size is roughly consistent, and nothing contradicts it.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1479 in / 138 out tokens, $0.0043, 2.3 s):
+  │   {
+  │     "rationale": "Stage 3 rates relevance high: a brown teddy bear with a red bow matches Lily's teddy bear in kind, colour and distinctive feature, with no mismatches, so policy calls for converging. It was found 115 m from the last known point and she could have walked on after dropping it, so a wide radius is warranted.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 120.0,
+  │     "priority": "high"
+  │   }
+  └─
+
+  >> SEARCH CENTRE set by code to the candidate's position (41.698000, -86.238200), radius 120 m
+
+  RESULT lp01 run 1: 'brown teddy bear with red bow' -> relevance high, action converge_search  ($0.0176, 3 calls)
+  TRUTH: RELEVANT, acceptable ['converge_search'] -- Her teddy bear: brown, red bow, child's toy she never puts down.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp01  run 2/3   image teddy-bear-red-bow.png
+  STAGE 1 (detect, offline oracle): candidate lp01 at (41.698000, -86.238200), label 'unknown', crop 0.002 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 38 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp01-run2/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.20 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 261 out tokens, $0.0065, 2.9 s):
+  │   {
+  │     "observations": "A seated teddy bear lying on green grass, seen from above. It has a round head with two round ears, a lighter tan muzzle, and dark eyes and nose. The body is medium brown with a lighter tan belly patch, short arms held out at the sides, and two lighter tan paw pads at the bottom. A red bow or ribbon sits at the neck, with a small dark red detail below it on the chest.",
+  │     "object_type": "brown teddy bear with red bow",
+  │     "category": "toy",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "red"
+  │     ],
+  │     "distinctive_features": [
+  │       "red bow at the neck",
+  │       "lighter tan muzzle and belly patch",
+  │       "tan foot pads",
+  │       "round ears"
+  │     ],
+  │     "estimated_size_cm": 24.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A seated teddy bear lying on green grass, seen from above. It has a round head with two round ears, a lighter tan muzzle, and dark eyes and nose. The body is medium brown with a lighter tan belly patch, short arms held out at the sides, and two lighter tan paw pads at the bottom. A red bow or ribbon sits at the neck, with a small dark red detail below it on the chest.",
+  │     "object_type": "brown teddy bear with red bow",
+  │     "category": "toy",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "red"
+  │     ],
+  │     "distinctive_features": [
+  │       "red bow at the neck",
+  │       "lighter tan muzzle and belly patch",
+  │       "tan foot pads",
+  │       "round ears"
+  │     ],
+  │     "estimated_size_cm": 24.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2324 in / 269 out tokens, $0.0073, 2.9 s):
+  │   {
+  │     "possible_items": [
+  │       "brown teddy bear with a red ribbon bow, about 30 cm tall"
+  │     ],
+  │     "candidate_item": "brown teddy bear with a red ribbon bow, about 30 cm tall",
+  │     "matches": [
+  │       "teddy bear is the same kind of object",
+  │       "brown main colour",
+  │       "red bow/ribbon at the neck",
+  │       "toy size is plausible for a child (est. 24 cm vs about 30 cm; size estimate from a drone image is approximate)"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a brown teddy bear with a red bow at the neck, matching both the kind of object and the distinctive feature of Lily's teddy bear. The size estimate is slightly smaller than 30 cm but within the uncertainty of an aerial estimate, so nothing clearly contradicts it.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: brown teddy bear with red bow (describe confidence high).
+  │   Distance from the last known point: 115 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "brown teddy bear with a red ribbon bow, about 30 cm tall"
+  │     ],
+  │     "candidate_item": "brown teddy bear with a red ribbon bow, about 30 cm tall",
+  │     "matches": [
+  │       "teddy bear is the same kind of object",
+  │       "brown main colour",
+  │       "red bow/ribbon at the neck",
+  │       "toy size is plausible for a child (est. 24 cm vs about 30 cm; size estimate from a drone image is approximate)"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a brown teddy bear with a red bow at the neck, matching both the kind of object and the distinctive feature of Lily's teddy bear. The size estimate is slightly smaller than 30 cm but within the uncertainty of an aerial estimate, so nothing clearly contradicts it.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1519 in / 127 out tokens, $0.0043, 1.7 s):
+  │   {
+  │     "rationale": "Relevance is high: a brown teddy bear with a red bow matches Lily's bear with no mismatches, so policy calls for converging the search. It was found 115 m from the last known point and she could have walked on after dropping it, so a wide radius is warranted, and the item is very specific to her.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 130.0,
+  │     "priority": "high"
+  │   }
+  └─
+
+  >> SEARCH CENTRE set by code to the candidate's position (41.698000, -86.238200), radius 130 m
+
+  RESULT lp01 run 2: 'brown teddy bear with red bow' -> relevance high, action converge_search  ($0.0182, 3 calls)
+  TRUTH: RELEVANT, acceptable ['converge_search'] -- Her teddy bear: brown, red bow, child's toy she never puts down.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp01  run 3/3   image teddy-bear-red-bow.png
+  STAGE 1 (detect, offline oracle): candidate lp01 at (41.698000, -86.238200), label 'unknown', crop 0.002 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 38 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp01-run3/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.20 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 287 out tokens, $0.0068, 3.0 s):
+  │   {
+  │     "observations": "A teddy bear sitting upright on green grass, seen from the front/above. The body, head, round ears and arms are medium brown, with lighter tan patches on the muzzle, belly, ear centres and foot pads. A red bow or bow tie sits at the neck, with a small dark red detail below it on the chest. The texture looks plush. The bear spans roughly 130 px from the top of the ears to the bottom of the feet.",
+  │     "object_type": "brown plush teddy bear with red bow tie",
+  │     "category": "toy",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "red"
+  │     ],
+  │     "distinctive_features": [
+  │       "red bow at the neck",
+  │       "lighter tan belly patch",
+  │       "tan muzzle and ear centres",
+  │       "tan foot pads",
+  │       "small dark red detail below the bow"
+  │     ],
+  │     "estimated_size_cm": 26.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A teddy bear sitting upright on green grass, seen from the front/above. The body, head, round ears and arms are medium brown, with lighter tan patches on the muzzle, belly, ear centres and foot pads. A red bow or bow tie sits at the neck, with a small dark red detail below it on the chest. The texture looks plush. The bear spans roughly 130 px from the top of the ears to the bottom of the feet.",
+  │     "object_type": "brown plush teddy bear with red bow tie",
+  │     "category": "toy",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "red"
+  │     ],
+  │     "distinctive_features": [
+  │       "red bow at the neck",
+  │       "lighter tan belly patch",
+  │       "tan muzzle and ear centres",
+  │       "tan foot pads",
+  │       "small dark red detail below the bow"
+  │     ],
+  │     "estimated_size_cm": 26.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2353 in / 236 out tokens, $0.0071, 2.8 s):
+  │   {
+  │     "possible_items": [
+  │       "brown teddy bear with a red ribbon bow, about 30 cm tall"
+  │     ],
+  │     "candidate_item": "brown teddy bear with a red ribbon bow, about 30 cm tall",
+  │     "matches": [
+  │       "same kind of object: teddy bear",
+  │       "brown body color",
+  │       "red bow at the neck",
+  │       "estimated size about 26 cm is close to the ~30 cm listed",
+  │       "found outdoors near the stadium area"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a brown plush teddy bear with a red bow at the neck, and its size is close to Lily's 30 cm teddy bear. Nothing contradicts the listed item, and the analyst's confidence is high, so this is a strong match.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: brown plush teddy bear with red bow tie (describe confidence high).
+  │   Distance from the last known point: 115 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "brown teddy bear with a red ribbon bow, about 30 cm tall"
+  │     ],
+  │     "candidate_item": "brown teddy bear with a red ribbon bow, about 30 cm tall",
+  │     "matches": [
+  │       "same kind of object: teddy bear",
+  │       "brown body color",
+  │       "red bow at the neck",
+  │       "estimated size about 26 cm is close to the ~30 cm listed",
+  │       "found outdoors near the stadium area"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a brown plush teddy bear with a red bow at the neck, and its size is close to Lily's 30 cm teddy bear. Nothing contradicts the listed item, and the analyst's confidence is high, so this is a strong match.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1493 in / 111 out tokens, $0.0041, 2.0 s):
+  │   {
+  │     "rationale": "Relevance is high with no mismatches, so policy calls for converge_search. The bear is item-specific to Lily and found 115 m from where she was last seen 30 minutes ago, so she could have walked on, which warrants a wide radius.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 120.0,
+  │     "priority": "high"
+  │   }
+  └─
+
+  >> SEARCH CENTRE set by code to the candidate's position (41.698000, -86.238200), radius 120 m
+
+  RESULT lp01 run 3: 'brown plush teddy bear with red bow tie' -> relevance high, action converge_search  ($0.0180, 3 calls)
+  TRUTH: RELEVANT, acceptable ['converge_search'] -- Her teddy bear: brown, red bow, child's toy she never puts down.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp02  run 1/3   image lime-cardigan.png
+  STAGE 1 (detect, offline oracle): candidate lp02 at (41.697450, -86.239050), label 'unknown', crop 0.003 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 36 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp02-run1/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.34 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 248 out tokens, $0.0064, 2.8 s):
+  │   {
+  │     "observations": "A lime green long-sleeved cardigan or jacket lying flat on dark green grass. It has a V-shaped neckline, a vertical front opening with a row of small buttons down the centre, and ribbed-looking cuffs and hem band in a slightly darker green. The sleeves angle outward and downward, and a darker inner collar or lining shows at the neck.",
+  │     "object_type": "lime green button-up cardigan",
+  │     "category": "clothing",
+  │     "colors": [
+  │       "lime green",
+  │       "dark green"
+  │     ],
+  │     "distinctive_features": [
+  │       "V-neck",
+  │       "row of small buttons down the front",
+  │       "ribbed cuffs and hem",
+  │       "darker green inner neck lining"
+  │     ],
+  │     "estimated_size_cm": 32.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A lime green long-sleeved cardigan or jacket lying flat on dark green grass. It has a V-shaped neckline, a vertical front opening with a row of small buttons down the centre, and ribbed-looking cuffs and hem band in a slightly darker green. The sleeves angle outward and downward, and a darker inner collar or lining shows at the neck.",
+  │     "object_type": "lime green button-up cardigan",
+  │     "category": "clothing",
+  │     "colors": [
+  │       "lime green",
+  │       "dark green"
+  │     ],
+  │     "distinctive_features": [
+  │       "V-neck",
+  │       "row of small buttons down the front",
+  │       "ribbed cuffs and hem",
+  │       "darker green inner neck lining"
+  │     ],
+  │     "estimated_size_cm": 32.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2308 in / 229 out tokens, $0.0069, 2.8 s):
+  │   {
+  │     "possible_items": [
+  │       "lime-green knit cardigan with cream buttons, worn over the pinafore"
+  │     ],
+  │     "candidate_item": "lime-green knit cardigan with cream buttons, worn over the pinafore",
+  │     "matches": [
+  │       "same kind of object: button-up cardigan",
+  │       "main colour lime green",
+  │       "child-sized garment",
+  │       "row of buttons down the front",
+  │       "long-sleeved knit-style with ribbed cuffs and hem"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized lime green button-up cardigan, matching the listed lime-green knit cardigan in kind, colour and size. Button colour is not described, which is not a mismatch, so nothing contradicts it.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: lime green button-up cardigan (describe confidence high).
+  │   Distance from the last known point: 208 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "lime-green knit cardigan with cream buttons, worn over the pinafore"
+  │     ],
+  │     "candidate_item": "lime-green knit cardigan with cream buttons, worn over the pinafore",
+  │     "matches": [
+  │       "same kind of object: button-up cardigan",
+  │       "main colour lime green",
+  │       "child-sized garment",
+  │       "row of buttons down the front",
+  │       "long-sleeved knit-style with ribbed cuffs and hem"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized lime green button-up cardigan, matching the listed lime-green knit cardigan in kind, colour and size. Button colour is not described, which is not a mismatch, so nothing contradicts it.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1481 in / 128 out tokens, $0.0042, 1.6 s):
+  │   {
+  │     "rationale": "Relevance is high: a child-sized lime green button-up knit cardigan matches Lily's clothing in kind, colour and size with no mismatches, so policy calls for converging. It was found 208 m from the last known point and she could have walked on after dropping it, so a wide radius is warranted.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 150.0,
+  │     "priority": "high"
+  │   }
+  └─
+
+  >> SEARCH CENTRE set by code to the candidate's position (41.697450, -86.239050), radius 150 m
+
+  RESULT lp02 run 1: 'lime green button-up cardigan' -> relevance high, action converge_search  ($0.0176, 3 calls)
+  TRUTH: RELEVANT, acceptable ['converge_search'] -- Her lime-green cardigan with cream buttons; she took it off in the heat.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp02  run 2/3   image lime-cardigan.png
+  STAGE 1 (detect, offline oracle): candidate lp02 at (41.697450, -86.239050), label 'unknown', crop 0.003 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 36 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp02-run2/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.34 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 244 out tokens, $0.0064, 3.1 s):
+  │   {
+  │     "observations": "A flat-lying lime green cardigan or jacket seen from above, with a V-shaped neckline, long sleeves angled outward and slightly bent, and a vertical row of small buttons or a placket down the centre front. The hem and cuffs look like ribbed bands in a slightly darker green. A darker green inner area is visible at the neck. It sits on dark green grass.",
+  │     "object_type": "lime green button-up cardigan",
+  │     "category": "clothing",
+  │     "colors": [
+  │       "lime green",
+  │       "dark green"
+  │     ],
+  │     "distinctive_features": [
+  │       "V-neck",
+  │       "button placket down the front",
+  │       "ribbed cuffs and hem",
+  │       "long sleeves"
+  │     ],
+  │     "estimated_size_cm": 27.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A flat-lying lime green cardigan or jacket seen from above, with a V-shaped neckline, long sleeves angled outward and slightly bent, and a vertical row of small buttons or a placket down the centre front. The hem and cuffs look like ribbed bands in a slightly darker green. A darker green inner area is visible at the neck. It sits on dark green grass.",
+  │     "object_type": "lime green button-up cardigan",
+  │     "category": "clothing",
+  │     "colors": [
+  │       "lime green",
+  │       "dark green"
+  │     ],
+  │     "distinctive_features": [
+  │       "V-neck",
+  │       "button placket down the front",
+  │       "ribbed cuffs and hem",
+  │       "long sleeves"
+  │     ],
+  │     "estimated_size_cm": 27.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2304 in / 203 out tokens, $0.0066, 2.2 s):
+  │   {
+  │     "possible_items": [
+  │       "lime-green knit cardigan with cream buttons, worn over the pinafore"
+  │     ],
+  │     "candidate_item": "lime-green knit cardigan with cream buttons, worn over the pinafore",
+  │     "matches": [
+  │       "same kind of object: button-up cardigan",
+  │       "main colour lime green",
+  │       "child-sized garment",
+  │       "buttons down the front",
+  │       "long sleeves"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized lime-green button-up cardigan, matching Lily's lime-green knit cardigan in kind, colour and size. Button colour is not described, but that is not a contradiction.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: lime green button-up cardigan (describe confidence high).
+  │   Distance from the last known point: 208 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "lime-green knit cardigan with cream buttons, worn over the pinafore"
+  │     ],
+  │     "candidate_item": "lime-green knit cardigan with cream buttons, worn over the pinafore",
+  │     "matches": [
+  │       "same kind of object: button-up cardigan",
+  │       "main colour lime green",
+  │       "child-sized garment",
+  │       "buttons down the front",
+  │       "long sleeves"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized lime-green button-up cardigan, matching Lily's lime-green knit cardigan in kind, colour and size. Button colour is not described, but that is not a contradiction.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1455 in / 121 out tokens, $0.0041, 5.1 s):
+  │   {
+  │     "rationale": "Relevance is high: a child-sized lime-green button-up cardigan matches Lily's clothing with no mismatches, so policy calls for converge_search. It was found 208 m from the last known point and she could have walked on after dropping it, so a wide radius is warranted.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 150.0,
+  │     "priority": "high"
+  │   }
+  └─
+
+  >> SEARCH CENTRE set by code to the candidate's position (41.697450, -86.239050), radius 150 m
+
+  RESULT lp02 run 2: 'lime green button-up cardigan' -> relevance high, action converge_search  ($0.0171, 3 calls)
+  TRUTH: RELEVANT, acceptable ['converge_search'] -- Her lime-green cardigan with cream buttons; she took it off in the heat.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp02  run 3/3   image lime-cardigan.png
+  STAGE 1 (detect, offline oracle): candidate lp02 at (41.697450, -86.239050), label 'unknown', crop 0.003 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 36 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp02-run3/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.34 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 224 out tokens, $0.0062, 2.5 s):
+  │   {
+  │     "observations": "A lime green cardigan-style top lying flat on dark green grass. It has a V-shaped neckline, a vertical button placket down the centre with small buttons, long sleeves angled outward with ribbed cuffs, and a ribbed hem band. A darker green inner area is visible at the neckline.",
+  │     "object_type": "lime green button-up cardigan",
+  │     "category": "clothing",
+  │     "colors": [
+  │       "lime green",
+  │       "dark green"
+  │     ],
+  │     "distinctive_features": [
+  │       "V-neck",
+  │       "vertical button placket with small buttons",
+  │       "ribbed cuffs",
+  │       "ribbed hem band"
+  │     ],
+  │     "estimated_size_cm": 53.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A lime green cardigan-style top lying flat on dark green grass. It has a V-shaped neckline, a vertical button placket down the centre with small buttons, long sleeves angled outward with ribbed cuffs, and a ribbed hem band. A darker green inner area is visible at the neckline.",
+  │     "object_type": "lime green button-up cardigan",
+  │     "category": "clothing",
+  │     "colors": [
+  │       "lime green",
+  │       "dark green"
+  │     ],
+  │     "distinctive_features": [
+  │       "V-neck",
+  │       "vertical button placket with small buttons",
+  │       "ribbed cuffs",
+  │       "ribbed hem band"
+  │     ],
+  │     "estimated_size_cm": 53.0,
+  │     "wearer_size": "child",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2284 in / 223 out tokens, $0.0068, 2.7 s):
+  │   {
+  │     "possible_items": [
+  │       "lime-green knit cardigan with cream buttons, worn over the pinafore"
+  │     ],
+  │     "candidate_item": "lime-green knit cardigan with cream buttons, worn over the pinafore",
+  │     "matches": [
+  │       "same kind of object: button-up cardigan",
+  │       "main colour lime green",
+  │       "child-sized garment",
+  │       "vertical button placket with small buttons consistent with cardigan buttons"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized lime green button-up cardigan, matching Lily's lime-green knit cardigan in kind, colour and size. Button colour isn't described, which is not a mismatch, and nothing contradicts the match.",
+  │     "relevance": "high"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: lime green button-up cardigan (describe confidence high).
+  │   Distance from the last known point: 208 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "lime-green knit cardigan with cream buttons, worn over the pinafore"
+  │     ],
+  │     "candidate_item": "lime-green knit cardigan with cream buttons, worn over the pinafore",
+  │     "matches": [
+  │       "same kind of object: button-up cardigan",
+  │       "main colour lime green",
+  │       "child-sized garment",
+  │       "vertical button placket with small buttons consistent with cardigan buttons"
+  │     ],
+  │     "mismatches": [],
+  │     "rationale": "The object is a child-sized lime green button-up cardigan, matching Lily's lime-green knit cardigan in kind, colour and size. Button colour isn't described, which is not a mismatch, and nothing contradicts the match.",
+  │     "relevance": "high"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1472 in / 144 out tokens, $0.0044, 2.7 s):
+  │   {
+  │     "rationale": "Stage 3 rates relevance high: a child-sized lime green button-up cardigan matches Lily's garment in kind, colour and size with no mismatches, so policy calls for converge_search. It was found 208 m from the last known point and she could have walked on since dropping it, so a wide radius is warranted; the cardigan is specific to her.",
+  │     "action": "converge_search",
+  │     "search_radius_m": 150.0,
+  │     "priority": "high"
+  │   }
+  └─
+
+  >> SEARCH CENTRE set by code to the candidate's position (41.697450, -86.239050), radius 150 m
+
+  RESULT lp02 run 3: 'lime green button-up cardigan' -> relevance high, action converge_search  ($0.0174, 3 calls)
+  TRUTH: RELEVANT, acceptable ['converge_search'] -- Her lime-green cardigan with cream buttons; she took it off in the heat.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp03  run 1/3   image mans-brown-oxford-shoe.png
+  STAGE 1 (detect, offline oracle): candidate lp03 at (41.699150, -86.236300), label 'unknown', crop 0.002 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 30 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp03-run1/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.17 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 261 out tokens, $0.0065, 3.3 s):
+  │   {
+  │     "observations": "An elongated oval object lying diagonally on green grass, running from lower left to upper right. It is brown with a darker brown rim and a smooth, slightly glossy surface. The lower-left end has a hollow opening with a pale cream or tan interior, which looks like an insole or lining. The shape resembles a slip-on shoe or sandal seen from above, but the detail is blurry.",
+  │     "object_type": "brown slip-on shoe or clog, lying on its side",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "cream"
+  │     ],
+  │     "distinctive_features": [
+  │       "pale cream interior visible at the opening",
+  │       "darker brown rim or edge",
+  │       "smooth leather-like surface"
+  │     ],
+  │     "estimated_size_cm": 30.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "medium",
+  │     "needs_closer_look": true
+  │   }
+  └─
+
+  >> CLOSER LOOK (describe could not tell): zoomed view of lp03
+
+  ┌─ call 2: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 67 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp03-run1/02-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, ZOOMED closer-look view (6x).
+  │   Ground scale: 0.18 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1969 in / 291 out tokens, $0.0069, 2.8 s):
+  │   {
+  │     "observations": "An elongated, oval-shaped brown shoe seen from above, lying diagonally from lower left to upper right. The upper is medium brown with a darker brown outline and a thin sole edge. The lower-left end has an oval opening in tan/cream and dark brown, and the middle has cream laces crossed in an X pattern. A thin pale stitched line runs across the toe end at upper right. The look is smooth and flat, like leather.",
+  │     "object_type": "brown leather lace-up shoe with cream laces",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "cream",
+  │       "dark brown"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream criss-cross laces",
+  │       "oval tan opening at the heel end",
+  │       "thin stitched line across the toe",
+  │       "darker brown outline and sole edge"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 3: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "An elongated, oval-shaped brown shoe seen from above, lying diagonally from lower left to upper right. The upper is medium brown with a darker brown outline and a thin sole edge. The lower-left end has an oval opening in tan/cream and dark brown, and the middle has cream laces crossed in an X pattern. A thin pale stitched line runs across the toe end at upper right. The look is smooth and flat, like leather.",
+  │     "object_type": "brown leather lace-up shoe with cream laces",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "cream",
+  │       "dark brown"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream criss-cross laces",
+  │       "oval tan opening at the heel end",
+  │       "thin stitched line across the toe",
+  │       "darker brown outline and sole edge"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2357 in / 226 out tokens, $0.0070, 2.4 s):
+  │   {
+  │     "possible_items": [
+  │       "grey sneakers with pink trim"
+  │     ],
+  │     "candidate_item": "grey sneakers with pink trim",
+  │     "matches": [
+  │       "same kind of object (footwear)"
+  │     ],
+  │     "mismatches": [
+  │       "main colour is brown, not grey",
+  │       "cream laces and no pink trim visible",
+  │       "adult size (about 28 cm) versus a small 5-year-old's shoe",
+  │       "leather lace-up shoe rather than a child's sneaker"
+  │     ],
+  │     "rationale": "The only listed footwear is Lily's grey sneakers with pink trim, but this object is a brown leather adult-sized lace-up shoe, which contradicts the colour, size and style. It is almost certainly someone else's shoe.",
+  │     "relevance": "none"
+  │   }
+  └─
+
+  ┌─ call 4: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: brown leather lace-up shoe with cream laces (describe confidence high).
+  │   Distance from the last known point: 90 m (computed by the planner).
+  │   A closer look HAS ALREADY BEEN TAKEN: inspect_closer is not available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "grey sneakers with pink trim"
+  │     ],
+  │     "candidate_item": "grey sneakers with pink trim",
+  │     "matches": [
+  │       "same kind of object (footwear)"
+  │     ],
+  │     "mismatches": [
+  │       "main colour is brown, not grey",
+  │       "cream laces and no pink trim visible",
+  │       "adult size (about 28 cm) versus a small 5-year-old's shoe",
+  │       "leather lace-up shoe rather than a child's sneaker"
+  │     ],
+  │     "rationale": "The only listed footwear is Lily's grey sneakers with pink trim, but this object is a brown leather adult-sized lace-up shoe, which contradicts the colour, size and style. It is almost certainly someone else's shoe.",
+  │     "relevance": "none"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1499 in / 95 out tokens, $0.0040, 1.9 s):
+  │   {
+  │     "rationale": "Stage 3 assessed relevance as none: the brown adult-sized leather shoe contradicts Lily's grey sneakers with pink trim in colour, size and style, so policy says ignore.",
+  │     "action": "ignore",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp03 run 1: 'brown leather lace-up shoe with cream laces' -> relevance none, action ignore  ($0.0243, 4 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- Adult man's shoe; Lily wears grey child's sneakers.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp03  run 2/3   image mans-brown-oxford-shoe.png
+  STAGE 1 (detect, offline oracle): candidate lp03 at (41.699150, -86.236300), label 'unknown', crop 0.002 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 30 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp03-run2/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.17 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 284 out tokens, $0.0068, 2.9 s):
+  │   {
+  │     "observations": "An elongated, rounded oval object lying diagonally on green grass, running from lower left to upper right. It is brown, with a darker brown rim and a hollow or recessed opening at the lower-left end. Inside the opening is a cream or tan patch, possibly an insole or lining. The outline is smooth and slightly blurry, and the overall shape resembles a slip-on shoe or a sandal seen from above.",
+  │     "object_type": "brown slip-on shoe or clog, possibly a loafer or slipper",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "dark brown",
+  │       "tan"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream or tan interior visible at the opening",
+  │       "darker brown rim around the opening",
+  │       "smooth rounded toe at upper right"
+  │     ],
+  │     "estimated_size_cm": null,
+  │     "wearer_size": "unknown",
+  │     "confidence": "medium",
+  │     "needs_closer_look": true
+  │   }
+  └─
+
+  >> CLOSER LOOK (describe could not tell): zoomed view of lp03
+
+  ┌─ call 2: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 67 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp03-run2/02-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, ZOOMED closer-look view (6x).
+  │   Ground scale: 0.18 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1969 in / 270 out tokens, $0.0066, 2.9 s):
+  │   {
+  │     "observations": "An elongated brown shoe seen from above, lying diagonally from lower left to upper right. The upper is medium brown leather-like material with a darker brown outline and sole edge. A cream/tan oval opening for the foot sits at the lower-left end, and cream laces criss-cross over the tongue area just beyond it. A thin lighter stitched line runs across the toe end at upper right.",
+  │     "object_type": "brown leather lace-up shoe with cream laces",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "dark brown",
+  │       "cream"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream criss-cross laces",
+  │       "cream oval opening at the heel end",
+  │       "thin stitched line across the toe",
+  │       "dark brown sole edge"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 3: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "An elongated brown shoe seen from above, lying diagonally from lower left to upper right. The upper is medium brown leather-like material with a darker brown outline and sole edge. A cream/tan oval opening for the foot sits at the lower-left end, and cream laces criss-cross over the tongue area just beyond it. A thin lighter stitched line runs across the toe end at upper right.",
+  │     "object_type": "brown leather lace-up shoe with cream laces",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "dark brown",
+  │       "cream"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream criss-cross laces",
+  │       "cream oval opening at the heel end",
+  │       "thin stitched line across the toe",
+  │       "dark brown sole edge"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2333 in / 232 out tokens, $0.0070, 3.5 s):
+  │   {
+  │     "possible_items": [
+  │       "grey sneakers with pink trim"
+  │     ],
+  │     "candidate_item": "grey sneakers with pink trim",
+  │     "matches": [
+  │       "same general kind of object (footwear, lace-up shoe)"
+  │     ],
+  │     "mismatches": [
+  │       "main colour is brown, not grey",
+  │       "no pink trim visible; cream and dark brown instead",
+  │       "adult size (about 28 cm) versus a small 5-year-old's shoe",
+  │       "leather dress-style shoe rather than a sneaker"
+  │     ],
+  │     "rationale": "The only listed item of the same kind is the grey sneakers, but the object is a brown leather adult-sized lace-up shoe, contradicting the colour, size and style. It is almost certainly someone else's shoe.",
+  │     "relevance": "none"
+  │   }
+  └─
+
+  ┌─ call 4: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: brown leather lace-up shoe with cream laces (describe confidence high).
+  │   Distance from the last known point: 90 m (computed by the planner).
+  │   A closer look HAS ALREADY BEEN TAKEN: inspect_closer is not available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "grey sneakers with pink trim"
+  │     ],
+  │     "candidate_item": "grey sneakers with pink trim",
+  │     "matches": [
+  │       "same general kind of object (footwear, lace-up shoe)"
+  │     ],
+  │     "mismatches": [
+  │       "main colour is brown, not grey",
+  │       "no pink trim visible; cream and dark brown instead",
+  │       "adult size (about 28 cm) versus a small 5-year-old's shoe",
+  │       "leather dress-style shoe rather than a sneaker"
+  │     ],
+  │     "rationale": "The only listed item of the same kind is the grey sneakers, but the object is a brown leather adult-sized lace-up shoe, contradicting the colour, size and style. It is almost certainly someone else's shoe.",
+  │     "relevance": "none"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1505 in / 110 out tokens, $0.0041, 2.2 s):
+  │   {
+  │     "rationale": "Stage 3 rated relevance as none: the brown leather adult-sized shoe contradicts the grey pink-trimmed child's sneakers on colour, size and style, so it is almost certainly someone else's. Policy for none is ignore.",
+  │     "action": "ignore",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp03 run 2: 'brown leather lace-up shoe with cream laces' -> relevance none, action ignore  ($0.0245, 4 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- Adult man's shoe; Lily wears grey child's sneakers.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp03  run 3/3   image mans-brown-oxford-shoe.png
+  STAGE 1 (detect, offline oracle): candidate lp03 at (41.699150, -86.236300), label 'unknown', crop 0.002 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 30 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp03-run3/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.17 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 273 out tokens, $0.0067, 2.7 s):
+  │   {
+  │     "observations": "An elongated, rounded oval object lying diagonally on green grass, running from lower left to upper right. It is brown with a darker brown outline and a smooth, slightly glossy look. The lower-left end has a hollow opening with a pale cream or tan interior, which looks like an insole or lining. It looks like a slip-on shoe or sandal seen from above, but it is small and blurry.",
+  │     "object_type": "brown slip-on shoe or clog, possibly a slipper",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "cream"
+  │     ],
+  │     "distinctive_features": [
+  │       "pale cream interior or insole visible at the opening",
+  │       "smooth brown rounded toe end",
+  │       "darker brown outline or sole edge"
+  │     ],
+  │     "estimated_size_cm": 24.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "medium",
+  │     "needs_closer_look": true
+  │   }
+  └─
+
+  >> CLOSER LOOK (describe could not tell): zoomed view of lp03
+
+  ┌─ call 2: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 67 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp03-run3/02-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, ZOOMED closer-look view (6x).
+  │   Ground scale: 0.18 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1969 in / 281 out tokens, $0.0067, 2.9 s):
+  │   {
+  │     "observations": "An elongated brown shoe seen from above, lying diagonally from lower left to upper right. The upper is medium brown with a darker brown outline and sole edge. At the lower-left end is a large oval opening with a tan inner lining. Cream-coloured laces criss-cross over the tongue in the middle, with loose lace ends near the opening. The rounded toe at the upper right has a thin tan stitched line.",
+  │     "object_type": "brown lace-up leather shoe with cream laces",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "cream"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream criss-cross laces",
+  │       "tan oval inner lining at the opening",
+  │       "darker brown sole edge",
+  │       "thin tan stitched line on the toe cap"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 3: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "An elongated brown shoe seen from above, lying diagonally from lower left to upper right. The upper is medium brown with a darker brown outline and sole edge. At the lower-left end is a large oval opening with a tan inner lining. Cream-coloured laces criss-cross over the tongue in the middle, with loose lace ends near the opening. The rounded toe at the upper right has a thin tan stitched line.",
+  │     "object_type": "brown lace-up leather shoe with cream laces",
+  │     "category": "footwear",
+  │     "colors": [
+  │       "brown",
+  │       "tan",
+  │       "cream"
+  │     ],
+  │     "distinctive_features": [
+  │       "cream criss-cross laces",
+  │       "tan oval inner lining at the opening",
+  │       "darker brown sole edge",
+  │       "thin tan stitched line on the toe cap"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "adult",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2344 in / 231 out tokens, $0.0070, 2.7 s):
+  │   {
+  │     "possible_items": [
+  │       "grey sneakers with pink trim"
+  │     ],
+  │     "candidate_item": "grey sneakers with pink trim",
+  │     "matches": [
+  │       "footwear is the same kind of object as the listed sneakers"
+  │     ],
+  │     "mismatches": [
+  │       "main colour is brown with tan and cream, not grey with pink trim",
+  │       "28 cm length and adult wearer size, versus a small 5-year-old's shoe",
+  │       "brown lace-up leather shoe, not a child's sneaker"
+  │     ],
+  │     "rationale": "The object is footwear, but it is an adult-sized brown leather shoe, which clearly contradicts Lily's small grey sneakers with pink trim in colour and size. It is most likely someone else's dropped shoe.",
+  │     "relevance": "low"
+  │   }
+  └─
+
+  ┌─ call 4: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: brown lace-up leather shoe with cream laces (describe confidence high).
+  │   Distance from the last known point: 90 m (computed by the planner).
+  │   A closer look HAS ALREADY BEEN TAKEN: inspect_closer is not available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "grey sneakers with pink trim"
+  │     ],
+  │     "candidate_item": "grey sneakers with pink trim",
+  │     "matches": [
+  │       "footwear is the same kind of object as the listed sneakers"
+  │     ],
+  │     "mismatches": [
+  │       "main colour is brown with tan and cream, not grey with pink trim",
+  │       "28 cm length and adult wearer size, versus a small 5-year-old's shoe",
+  │       "brown lace-up leather shoe, not a child's sneaker"
+  │     ],
+  │     "rationale": "The object is footwear, but it is an adult-sized brown leather shoe, which clearly contradicts Lily's small grey sneakers with pink trim in colour and size. It is most likely someone else's dropped shoe.",
+  │     "relevance": "low"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1501 in / 95 out tokens, $0.0040, 1.8 s):
+  │   {
+  │     "rationale": "Relevance is low: the shoe is an adult-sized brown leather lace-up, which contradicts Lily's small grey sneakers with pink trim, so policy says to log it only and continue the search.",
+  │     "action": "log_only",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp03 run 3: 'brown lace-up leather shoe with cream laces' -> relevance low, action log_only  ($0.0244, 4 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- Adult man's shoe; Lily wears grey child's sneakers.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp04  run 1/3   image doll-pink-dress.png
+  STAGE 1 (detect, offline oracle): candidate lp04 at (41.697700, -86.236700), label 'unknown', crop 0.003 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 39 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp04-run1/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.27 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 266 out tokens, $0.0066, 2.7 s):
+  │   {
+  │     "observations": "A small doll figure lying flat on green grass, seen from above. It has yellow-blonde hair in two pigtails, a pale skin-tone face with blue eyes, and a pink sleeveless dress with a lighter collar area. The arms are held out to the sides, and the bare legs end in small white shoes. The figure spans roughly 105 pixels from head to feet.",
+  │     "object_type": "doll with blonde pigtails wearing a pink dress and white shoes",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "blonde",
+  │       "pale peach",
+  │       "white"
+  │     ],
+  │     "distinctive_features": [
+  │       "blonde pigtails",
+  │       "pink sleeveless dress",
+  │       "white shoes",
+  │       "arms outstretched"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "medium",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A small doll figure lying flat on green grass, seen from above. It has yellow-blonde hair in two pigtails, a pale skin-tone face with blue eyes, and a pink sleeveless dress with a lighter collar area. The arms are held out to the sides, and the bare legs end in small white shoes. The figure spans roughly 105 pixels from head to feet.",
+  │     "object_type": "doll with blonde pigtails wearing a pink dress and white shoes",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "blonde",
+  │       "pale peach",
+  │       "white"
+  │     ],
+  │     "distinctive_features": [
+  │       "blonde pigtails",
+  │       "pink sleeveless dress",
+  │       "white shoes",
+  │       "arms outstretched"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "medium",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2332 in / 250 out tokens, $0.0072, 2.7 s):
+  │   {
+  │     "possible_items": [
+  │       "brown teddy bear with a red ribbon bow, about 30 cm tall"
+  │     ],
+  │     "candidate_item": "brown teddy bear with a red ribbon bow, about 30 cm tall",
+  │     "matches": [
+  │       "toy of roughly 30 cm (28 cm estimated)",
+  │       "a toy a child might carry"
+  │     ],
+  │     "mismatches": [
+  │       "a doll is not a teddy bear",
+  │       "blonde hair and pink dress, not brown fur",
+  │       "no red ribbon bow visible",
+  │       "white shoes do not match a teddy bear"
+  │     ],
+  │     "rationale": "The object is clearly a doll with blonde pigtails and a pink dress, a different kind of object from Lily's brown teddy bear and a different colour. Only the size is similar, so it is probably another child's toy.",
+  │     "relevance": "low"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: doll with blonde pigtails wearing a pink dress and white shoes (describe confidence medium).
+  │   Distance from the last known point: 102 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [
+  │       "brown teddy bear with a red ribbon bow, about 30 cm tall"
+  │     ],
+  │     "candidate_item": "brown teddy bear with a red ribbon bow, about 30 cm tall",
+  │     "matches": [
+  │       "toy of roughly 30 cm (28 cm estimated)",
+  │       "a toy a child might carry"
+  │     ],
+  │     "mismatches": [
+  │       "a doll is not a teddy bear",
+  │       "blonde hair and pink dress, not brown fur",
+  │       "no red ribbon bow visible",
+  │       "white shoes do not match a teddy bear"
+  │     ],
+  │     "rationale": "The object is clearly a doll with blonde pigtails and a pink dress, a different kind of object from Lily's brown teddy bear and a different colour. Only the size is similar, so it is probably another child's toy.",
+  │     "relevance": "low"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1522 in / 107 out tokens, $0.0041, 2.1 s):
+  │   {
+  │     "rationale": "The object is a doll with blonde pigtails and a pink dress, not Lily's brown teddy bear with a red bow, and only its size matches, so relevance is low. Policy for low relevance is to log it and continue the search unchanged.",
+  │     "action": "log_only",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp04 run 1: 'doll with blonde pigtails wearing a pink dress and white shoes' -> relevance low, action log_only  ($0.0179, 3 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- A child's toy, but a doll, not her brown teddy bear.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp04  run 2/3   image doll-pink-dress.png
+  STAGE 1 (detect, offline oracle): candidate lp04 at (41.697700, -86.236700), label 'unknown', crop 0.003 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 39 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp04-run2/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.27 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 274 out tokens, $0.0067, 2.7 s):
+  │   {
+  │     "observations": "A small doll-like figure lying flat on dark green grass, seen from above. It has a round head with yellow blond hair in two pigtails on either side, a small face with blue eyes, a pink sleeveless dress, bare pale arms held out to the sides, bare pale legs, and small white shoes. The rendering is smooth and flat, like a figurine or doll.",
+  │     "object_type": "doll with blond pigtails wearing a pink dress and white shoes",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "yellow",
+  │       "pale peach",
+  │       "white"
+  │     ],
+  │     "distinctive_features": [
+  │       "blond hair in two pigtails",
+  │       "pink sleeveless A-line dress",
+  │       "white shoes",
+  │       "blue eyes",
+  │       "arms outstretched"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "medium",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A small doll-like figure lying flat on dark green grass, seen from above. It has a round head with yellow blond hair in two pigtails on either side, a small face with blue eyes, a pink sleeveless dress, bare pale arms held out to the sides, bare pale legs, and small white shoes. The rendering is smooth and flat, like a figurine or doll.",
+  │     "object_type": "doll with blond pigtails wearing a pink dress and white shoes",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "yellow",
+  │       "pale peach",
+  │       "white"
+  │     ],
+  │     "distinctive_features": [
+  │       "blond hair in two pigtails",
+  │       "pink sleeveless A-line dress",
+  │       "white shoes",
+  │       "blue eyes",
+  │       "arms outstretched"
+  │     ],
+  │     "estimated_size_cm": 28.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "medium",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2343 in / 199 out tokens, $0.0067, 2.6 s):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "doll is not a brown teddy bear",
+  │       "pink dress and blond hair do not match any listed clothing or the brown bear",
+  │       "white shoes are not grey sneakers with pink trim"
+  │     ],
+  │     "rationale": "The object is a blond-pigtailed doll in a pink dress, which does not fit any listed item: the only toy listed is a brown teddy bear, and the clothing colours differ. It is a child's toy that a girl like Lily might have, but it does not resemble anything she was carrying or wearing.",
+  │     "relevance": "low"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: doll with blond pigtails wearing a pink dress and white shoes (describe confidence medium).
+  │   Distance from the last known point: 102 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "doll is not a brown teddy bear",
+  │       "pink dress and blond hair do not match any listed clothing or the brown bear",
+  │       "white shoes are not grey sneakers with pink trim"
+  │     ],
+  │     "rationale": "The object is a blond-pigtailed doll in a pink dress, which does not fit any listed item: the only toy listed is a brown teddy bear, and the clothing colours differ. It is a child's toy that a girl like Lily might have, but it does not resemble anything she was carrying or wearing.",
+  │     "relevance": "low"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1451 in / 86 out tokens, $0.0038, 1.6 s):
+  │   {
+  │     "rationale": "Stage 3 rated relevance low because the doll matches neither the brown teddy bear nor any listed clothing, so policy says to record it for the operator without changing the search.",
+  │     "action": "log_only",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp04 run 2: 'doll with blond pigtails wearing a pink dress and white shoes' -> relevance low, action log_only  ($0.0171, 3 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- A child's toy, but a doll, not her brown teddy bear.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp04  run 3/3   image doll-pink-dress.png
+  STAGE 1 (detect, offline oracle): candidate lp04 at (41.697700, -86.236700), label 'unknown', crop 0.003 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 39 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp04-run3/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.27 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 266 out tokens, $0.0066, 2.5 s):
+  │   {
+  │     "observations": "A small doll-like figure lying flat on dark green grass, seen from above. It has a round head with yellow-blonde hair in two pigtails, a pale skin-toned face with small blue eyes, and arms held out to the sides. It wears a pink sleeveless dress with a lighter collar, bare skin-toned legs, and small white shoes. The image is slightly blurry and pixelated.",
+  │     "object_type": "doll with blonde pigtails in a pink dress",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "yellow",
+  │       "skin tone",
+  │       "white"
+  │     ],
+  │     "distinctive_features": [
+  │       "blonde pigtails",
+  │       "pink sleeveless dress",
+  │       "white shoes",
+  │       "arms outstretched"
+  │     ],
+  │     "estimated_size_cm": 38.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "medium",
+  │     "needs_closer_look": true
+  │   }
+  └─
+
+  >> CLOSER LOOK (describe could not tell): zoomed view of lp04
+
+  ┌─ call 2: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 280x280 px, 61 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp04-run3/02-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, ZOOMED closer-look view (6x).
+  │   Ground scale: 0.24 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1969 in / 298 out tokens, $0.0069, 3.3 s):
+  │   {
+  │     "observations": "A doll lying flat and seen from above, with a round peach face, blue eyes, small red mouth and yellow-blonde hair in two side pigtails. It wears a pink sleeveless A-line dress with a white collar, white buttons down the front and a white dotted trim along the hem. Bare peach arms and legs stick out, and it has white shoes with a strap. Everything has a thick black outline, giving a flat cartoon look.",
+  │     "object_type": "doll with blonde pigtails wearing a pink dress and white shoes",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "yellow",
+  │       "peach",
+  │       "white"
+  │     ],
+  │     "distinctive_features": [
+  │       "blonde pigtails",
+  │       "pink dress with white collar",
+  │       "white buttons down the front",
+  │       "white dotted hem trim",
+  │       "white shoes",
+  │       "blue eyes"
+  │     ],
+  │     "estimated_size_cm": 42.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 3: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A doll lying flat and seen from above, with a round peach face, blue eyes, small red mouth and yellow-blonde hair in two side pigtails. It wears a pink sleeveless A-line dress with a white collar, white buttons down the front and a white dotted trim along the hem. Bare peach arms and legs stick out, and it has white shoes with a strap. Everything has a thick black outline, giving a flat cartoon look.",
+  │     "object_type": "doll with blonde pigtails wearing a pink dress and white shoes",
+  │     "category": "toy",
+  │     "colors": [
+  │       "pink",
+  │       "yellow",
+  │       "peach",
+  │       "white"
+  │     ],
+  │     "distinctive_features": [
+  │       "blonde pigtails",
+  │       "pink dress with white collar",
+  │       "white buttons down the front",
+  │       "white dotted hem trim",
+  │       "white shoes",
+  │       "blue eyes"
+  │     ],
+  │     "estimated_size_cm": 42.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2370 in / 209 out tokens, $0.0068, 2.4 s):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "doll is not a teddy bear",
+  │       "pink dress and blonde hair do not match the brown teddy bear with red ribbon",
+  │       "about 42 cm versus about 30 cm",
+  │       "white shoes with strap do not match grey sneakers with pink trim"
+  │     ],
+  │     "rationale": "The object is a doll in a pink dress, and Lily's only toy is a brown teddy bear; no clothing item fits either, since this is a doll's outfit rather than a child's garment. It is a child's toy she might plausibly have, but it matches nothing listed.",
+  │     "relevance": "low"
+  │   }
+  └─
+
+  ┌─ call 4: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: doll with blonde pigtails wearing a pink dress and white shoes (describe confidence high).
+  │   Distance from the last known point: 102 m (computed by the planner).
+  │   A closer look HAS ALREADY BEEN TAKEN: inspect_closer is not available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "doll is not a teddy bear",
+  │       "pink dress and blonde hair do not match the brown teddy bear with red ribbon",
+  │       "about 42 cm versus about 30 cm",
+  │       "white shoes with strap do not match grey sneakers with pink trim"
+  │     ],
+  │     "rationale": "The object is a doll in a pink dress, and Lily's only toy is a brown teddy bear; no clothing item fits either, since this is a doll's outfit rather than a child's garment. It is a child's toy she might plausibly have, but it matches nothing listed.",
+  │     "relevance": "low"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1476 in / 90 out tokens, $0.0039, 4.2 s):
+  │   {
+  │     "rationale": "Stage 3 rated relevance low because the doll matches none of Lily's listed items (she had a brown teddy bear), so policy calls for logging it for the operator without changing the search.",
+  │     "action": "log_only",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp04 run 3: 'doll with blonde pigtails wearing a pink dress and white shoes' -> relevance low, action log_only  ($0.0242, 4 calls)
+  TRUTH: not relevant, acceptable ['ignore', 'log_only'] -- A child's toy, but a doll, not her brown teddy bear.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp05  run 1/3   image soccer-ball.png
+  STAGE 1 (detect, offline oracle): candidate lp05 at (41.699800, -86.238900), label 'unknown', crop 0.001 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 35 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp05-run1/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.14 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 202 out tokens, $0.0060, 2.5 s):
+  │   {
+  │     "observations": "A round object lying on green grass, seen from above. It is mostly white or light grey with black pentagon-shaped patches: one in the centre and others spaced around the edge. The outline is a dark circle and the surface looks smooth. The pattern is the classic football panel layout.",
+  │     "object_type": "black and white soccer ball",
+  │     "category": "sports_equipment",
+  │     "colors": [
+  │       "white",
+  │       "black"
+  │     ],
+  │     "distinctive_features": [
+  │       "black pentagon panels on white",
+  │       "classic football panel pattern"
+  │     ],
+  │     "estimated_size_cm": 23.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A round object lying on green grass, seen from above. It is mostly white or light grey with black pentagon-shaped patches: one in the centre and others spaced around the edge. The outline is a dark circle and the surface looks smooth. The pattern is the classic football panel layout.",
+  │     "object_type": "black and white soccer ball",
+  │     "category": "sports_equipment",
+  │     "colors": [
+  │       "white",
+  │       "black"
+  │     ],
+  │     "distinctive_features": [
+  │       "black pentagon panels on white",
+  │       "classic football panel pattern"
+  │     ],
+  │     "estimated_size_cm": 23.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2254 in / 154 out tokens, $0.0060, 2.4 s):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "soccer ball is not any listed clothing item or belonging",
+  │       "black and white colours do not match the brown teddy bear or any listed clothing colour"
+  │     ],
+  │     "rationale": "The object is a black and white soccer ball, which is a different kind of object from every listed item and is common at a busy tailgate. Nothing links it to Lily's clothing or her teddy bear.",
+  │     "relevance": "none"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: black and white soccer ball (describe confidence high).
+  │   Distance from the last known point: 205 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "soccer ball is not any listed clothing item or belonging",
+  │       "black and white colours do not match the brown teddy bear or any listed clothing colour"
+  │     ],
+  │     "rationale": "The object is a black and white soccer ball, which is a different kind of object from every listed item and is common at a busy tailgate. Nothing links it to Lily's clothing or her teddy bear.",
+  │     "relevance": "none"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1388 in / 88 out tokens, $0.0037, 1.9 s):
+  │   {
+  │     "rationale": "Stage 3 rated the black and white soccer ball as relevance none: it matches no listed clothing or belonging and is common at a busy tailgate, so policy says ignore.",
+  │     "action": "ignore",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp05 run 1: 'black and white soccer ball' -> relevance none, action ignore  ($0.0157, 3 calls)
+  TRUTH: not relevant, acceptable ['ignore'] -- Common game-day object; nothing ties it to Lily.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp05  run 2/3   image soccer-ball.png
+  STAGE 1 (detect, offline oracle): candidate lp05 at (41.699800, -86.238900), label 'unknown', crop 0.001 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 35 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp05-run2/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.14 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 206 out tokens, $0.0060, 2.2 s):
+  │   {
+  │     "observations": "A round object seen from above on green grass, with a white or light grey base and a classic pattern of black pentagon-like patches. One black patch sits in the centre, and others are spaced around the edge. The outline is a clean circle with a thin dark edge. The image is slightly blurry.",
+  │     "object_type": "black and white soccer ball",
+  │     "category": "toy",
+  │     "colors": [
+  │       "white",
+  │       "black"
+  │     ],
+  │     "distinctive_features": [
+  │       "black pentagon patch pattern",
+  │       "central black pentagon",
+  │       "round panelled surface"
+  │     ],
+  │     "estimated_size_cm": 22.4,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A round object seen from above on green grass, with a white or light grey base and a classic pattern of black pentagon-like patches. One black patch sits in the centre, and others are spaced around the edge. The outline is a clean circle with a thin dark edge. The image is slightly blurry.",
+  │     "object_type": "black and white soccer ball",
+  │     "category": "toy",
+  │     "colors": [
+  │       "white",
+  │       "black"
+  │     ],
+  │     "distinctive_features": [
+  │       "black pentagon patch pattern",
+  │       "central black pentagon",
+  │       "round panelled surface"
+  │     ],
+  │     "estimated_size_cm": 22.4,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2261 in / 172 out tokens, $0.0062, 2.4 s):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "soccer ball is not a teddy bear or any listed clothing item",
+  │       "black and white colours do not match brown teddy bear or any listed clothing",
+  │       "no listed belonging is a ball"
+  │     ],
+  │     "rationale": "The object is a confidently identified black and white soccer ball, which does not correspond to any listed clothing or the brown teddy bear. It is common game-day litter near a stadium, though a child could plausibly play with one.",
+  │     "relevance": "none"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: black and white soccer ball (describe confidence high).
+  │   Distance from the last known point: 205 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "soccer ball is not a teddy bear or any listed clothing item",
+  │       "black and white colours do not match brown teddy bear or any listed clothing",
+  │       "no listed belonging is a ball"
+  │     ],
+  │     "rationale": "The object is a confidently identified black and white soccer ball, which does not correspond to any listed clothing or the brown teddy bear. It is common game-day litter near a stadium, though a child could plausibly play with one.",
+  │     "relevance": "none"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1409 in / 76 out tokens, $0.0036, 2.2 s):
+  │   {
+  │     "rationale": "Stage 3 rated the soccer ball as relevance none: it matches no listed item and is common stadium litter, so policy says ignore.",
+  │     "action": "ignore",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp05 run 2: 'black and white soccer ball' -> relevance none, action ignore  ($0.0158, 3 calls)
+  TRUTH: not relevant, acceptable ['ignore'] -- Common game-day object; nothing ties it to Lily.
+  VERDICT: relevance OK, action OK
+
+====================================================================================================
+CLUE lp05  run 3/3   image soccer-ball.png
+  STAGE 1 (detect, offline oracle): candidate lp05 at (41.699800, -86.238900), label 'unknown', crop 0.001 m/px at 25.0 m
+
+  ┌─ call 1: DESCRIBE  (expects Description, effort medium)
+  │ system: prompts/describe.md -- "You describe objects seen from a search drone's downward-looking camera. You are an observ..."
+  │ IMAGE 1: 256x256 px, 35 KB image/png -> /home/yitong/uav-native-ai/hw07/clues/data/trace/20261015-030552/lp05-run3/01-describe-img1.png
+  │ TEXT:
+  │   Top-down drone camera crop, normal search-altitude view.
+  │   Ground scale: 0.14 cm per pixel of this crop (life-size), so measure the object in pixels and multiply.
+  │   Describe the object at the centre of the crop.
+  │ ── model answer (claude-sonnet-5-5, 1963 in / 215 out tokens, $0.0061, 2.5 s):
+  │   {
+  │     "observations": "A round object seen from above on green grass. It is mostly white or light grey with a black pentagon-shaped patch at the centre and further black patches around the rim, in the classic football pattern. The edge is a smooth circle with a dark outline and the surface looks slightly glossy.",
+  │     "object_type": "black and white football (soccer ball)",
+  │     "category": "sports_equipment",
+  │     "colors": [
+  │       "white",
+  │       "black",
+  │       "grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "black pentagon panels on white",
+  │       "classic truncated-icosahedron panel pattern"
+  │     ],
+  │     "estimated_size_cm": 23.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  └─
+
+  ┌─ call 2: RELEVANCE  (expects Relevance, effort medium)
+  │ system: prompts/relevance.md -- "You assess whether an object found by a search drone is evidence of one specific missing p..."
+  │ TEXT:
+  │   MISSING PERSON: Lily, age 5
+  │   Summary: 5-year-old girl, small for her age, wandered away from her family's tailgate near the stadium.
+  │   Clothing:
+  │     - yellow short-sleeved t-shirt
+  │     - blue denim pinafore (overall dress) with yellow buttons
+  │     - lime-green knit cardigan with cream buttons, worn over the pinafore
+  │     - white socks
+  │     - grey sneakers with pink trim
+  │   Belongings:
+  │     - brown teddy bear with a red ribbon bow, about 30 cm tall, which she carries everywhere
+  │   Other details:
+  │     - Brown hair in two pigtails with pink hair ties; freckles
+  │     - Shy with strangers; likely to sit down and wait somewhere quiet rather than call out
+  │   Last seen: 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear
+  │   Conditions: Clear and warm, 24 C, daylight. Busy game-day area with tailgate gear and litter.
+  │ TEXT:
+  │   OBJECT FOUND BY THE DRONE (Stage 2 description, from the image alone):
+  │   {
+  │     "observations": "A round object seen from above on green grass. It is mostly white or light grey with a black pentagon-shaped patch at the centre and further black patches around the rim, in the classic football pattern. The edge is a smooth circle with a dark outline and the surface looks slightly glossy.",
+  │     "object_type": "black and white football (soccer ball)",
+  │     "category": "sports_equipment",
+  │     "colors": [
+  │       "white",
+  │       "black",
+  │       "grey"
+  │     ],
+  │     "distinctive_features": [
+  │       "black pentagon panels on white",
+  │       "classic truncated-icosahedron panel pattern"
+  │     ],
+  │     "estimated_size_cm": 23.0,
+  │     "wearer_size": "not_applicable",
+  │     "confidence": "high",
+  │     "needs_closer_look": false
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 2272 in / 166 out tokens, $0.0062, 2.3 s):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "a football is not any listed clothing item or belonging",
+  │       "black and white colouring does not match the brown teddy bear or any listed clothing",
+  │       "round sports ball, not a plush toy"
+  │     ],
+  │     "rationale": "The object is clearly a black and white football with high confidence, and none of Lily's listed clothing or her brown teddy bear resembles it. It is likely game-day litter or gear belonging to someone else.",
+  │     "relevance": "none"
+  │   }
+  └─
+
+  ┌─ call 3: DECIDE  (expects ClueDecision, effort low)
+  │ system: prompts/decide.md -- "You choose the search team's response to one object a search drone found, given an assessm..."
+  │ TEXT:
+  │   Searching for Lily; last seen 30 minutes ago at the family tailgate, west side of the stadium, holding her teddy bear.
+  │   Object: black and white football (soccer ball) (describe confidence high).
+  │   Distance from the last known point: 205 m (computed by the planner).
+  │   No closer look has been taken yet: inspect_closer is available.
+  │   RELEVANCE ASSESSMENT (Stage 3):
+  │   {
+  │     "possible_items": [],
+  │     "candidate_item": null,
+  │     "matches": [],
+  │     "mismatches": [
+  │       "a football is not any listed clothing item or belonging",
+  │       "black and white colouring does not match the brown teddy bear or any listed clothing",
+  │       "round sports ball, not a plush toy"
+  │     ],
+  │     "rationale": "The object is clearly a black and white football with high confidence, and none of Lily's listed clothing or her brown teddy bear resembles it. It is likely game-day litter or gear belonging to someone else.",
+  │     "relevance": "none"
+  │   }
+  │ ── model answer (claude-sonnet-5-5, 1406 in / 98 out tokens, $0.0038, 2.2 s):
+  │   {
+  │     "rationale": "Stage 3 rated relevance as none: a black and white football matches none of Lily's clothing or her brown teddy bear, and is likely unrelated game-day gear, so policy calls for ignoring it.",
+  │     "action": "ignore",
+  │     "search_radius_m": null,
+  │     "priority": null
+  │   }
+  └─
+
+  RESULT lp05 run 3: 'black and white football (soccer ball)' -> relevance none, action ignore  ($0.0161, 3 calls)
+  TRUTH: not relevant, acceptable ['ignore'] -- Common game-day object; nothing ties it to Lily.
+  VERDICT: relevance OK, action OK
+
+clue  truth  object (last run)                relevance          action                       rel ok  act ok 
+-------------------------------------------------------------------------------------------------------------
+lp01  REL    brown plush teddy bear with red  highx3             converge_searchx3            3/3     3/3    
+lp02  REL    lime green button-up cardigan    highx3             converge_searchx3            3/3     3/3    
+lp03  -      brown lace-up leather shoe with  nonex2,low         ignorex2,log_only            3/3     3/3    
+lp04  -      doll with blonde pigtails weari  lowx3              log_onlyx3                   3/3     3/3    
+lp05  -      black and white football (socce  nonex3             ignorex3                     3/3     3/3    
+
+Relevance accuracy 15/15 (100%), action accuracy 15/15 (100%)
+Action agreement across repeats: 93% (1.0 = every run chose the same action)
+Cost $0.286, 131 s. Log: /home/yitong/uav-native-ai/hw07/clues/data/eval_runs.jsonl
